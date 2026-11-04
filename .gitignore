@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 本機狀態（去重 DB、launchd log）
+data/
+
+# 個人產出的每日摘要（範例放在 examples/）
+digests/*
+!digests/.gitkeep
