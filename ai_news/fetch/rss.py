@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import calendar
+import html
 
 import feedparser
 import requests
@@ -23,7 +24,7 @@ def fetch_rss(source: Source) -> list[Candidate]:
 
     out: list[Candidate] = []
     for e in feed.entries[:RSS_ENTRIES_PER_FEED]:
-        title = (e.get("title") or "").strip()
+        title = html.unescape((e.get("title") or "").strip())
         link = (e.get("link") or "").strip()
         if not title or not link.startswith("http"):
             continue
@@ -38,6 +39,7 @@ def fetch_rss(source: Source) -> list[Candidate]:
                 url=link,
                 published_at=published,
                 blurb=blurb,
+                default_category=source.default_category,
             )
         )
     return out

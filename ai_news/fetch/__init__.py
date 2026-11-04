@@ -6,13 +6,18 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from ..config import SOURCES, Source
 from ..models import Candidate
-from .hn import fetch_hn
+from .hf_papers import fetch_hf_papers
+from .hn import fetch_hn, fetch_hn_show
 from .rss import fetch_rss
 
 
 def _fetch_one(source: Source) -> list[Candidate]:
     if source.kind == "hn":
         return fetch_hn()
+    if source.kind == "hn_show":
+        return fetch_hn_show()
+    if source.kind == "hf_papers":
+        return fetch_hf_papers(source)
     return fetch_rss(source)
 
 

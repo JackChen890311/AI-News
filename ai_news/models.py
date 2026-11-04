@@ -30,6 +30,7 @@ class Candidate:
     hn_url: str | None = None
     blurb: str = ""  # RSS 描述，正文抓不到時的備援
     category: str | None = None  # headline | research | tools | opinion
+    default_category: str | None = None  # 分層專用來源直接指定分類
     rank_score: float = 0.0
     picked: bool = False
 

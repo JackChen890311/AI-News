@@ -42,6 +42,11 @@ DEDUP_DAYS = int(os.environ.get("AI_NEWS_DEDUP_DAYS", "14"))
 CACHE_MIN_ITEMS = 6  # 今天 DB 已有這麼多則就直接用快取，不重抓
 TOTAL_TARGET = sum(CATEGORY_COUNTS.values())  # 一天目標則數
 HEADLINE_BACKFILL_CAP = 5  # 其他分層缺額時，頭條最多回填到幾則
+BACKFILL_MIN_RATIO = 0.5  # 回填門檻：候選分數不得低於「已選最弱頭條」的這個比例
+
+# 選稿順序：分層專用來源先填，頭條最後。
+# 這樣 HN 的來源名額不會被頭條吃光，工具/研究才有機會進榜。
+PICK_ORDER = ["research", "tools", "opinion", "headline"]
 
 # ---------- 來源 ----------
 
@@ -52,7 +57,8 @@ class Source:
     label: str
     url: str
     weight: float = 1.0  # 排序權重：官方公告 > HN > 媒體
-    kind: str = "rss"  # "rss" | "hn"
+    kind: str = "rss"  # "rss" | "hn" | "hn_show" | "hf_papers"
+    default_category: str | None = None  # 分層專用來源：直接指定分類
 
 
 SOURCES: list[Source] = [
@@ -71,13 +77,26 @@ SOURCES: list[Source] = [
     Source("arstechnica", "Ars Technica",
            "https://feeds.arstechnica.com/arstechnica/technology-lab", weight=1.0),
     Source("huggingface", "Hugging Face", "https://huggingface.co/blog/feed.xml", weight=1.1),
+    # 分層專用來源：讓「研究 / 工具 / 觀點」每天都有真貨，不用靠頭條回填
+    Source("hf_papers", "HF Daily Papers",
+           "https://huggingface.co/api/daily_papers?limit=20",
+           weight=1.1, kind="hf_papers", default_category="research"),
+    Source("hn_show", "HN Show",
+           "https://hn.algolia.com/api/v1/search?tags=show_hn&hitsPerPage=30",
+           weight=1.05, kind="hn_show", default_category="tools"),
+    Source("simonwillison", "Simon Willison",
+           "https://simonwillison.net/atom/everything/",
+           weight=1.1, default_category="opinion"),
+    Source("latentspace", "Latent Space",
+           "https://www.latent.space/feed",
+           weight=1.0, default_category="opinion"),
 ]
 
 SOURCE_BY_ID = {s.id: s for s in SOURCES}
 
-# 信任來源：官方實驗室 / 平台 blog，整個 feed 都是 AI 內容，
+# 信任來源：官方實驗室 / 平台 blog、論文池，整個 feed 都是 AI 內容，
 # 不用再過 AI 關鍵字（不然 "Genie 4"、"SynthID Bio" 這種標題會被誤殺）。
-TRUSTED_SOURCES = {"openai", "deepmind", "huggingface"}
+TRUSTED_SOURCES = {"openai", "deepmind", "huggingface", "hf_papers", "latentspace"}
 
 # ---------- 關鍵字 ----------
 

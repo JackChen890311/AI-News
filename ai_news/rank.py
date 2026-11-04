@@ -8,12 +8,14 @@ HN 有社群票數當熱度訊號；其他來源沒有票數，給固定小加�
 from __future__ import annotations
 
 from .config import (
+    BACKFILL_MIN_RATIO,
     CATEGORY_COUNTS,
     CATEGORY_ORDER,
     HEADLINE_BACKFILL_CAP,
     MAX_PER_SOURCE,
     NOISE_REGEX,
     OPINION_REGEX,
+    PICK_ORDER,
     RESEARCH_REGEX,
     SCORE_PENALTY,
     SOURCE_BY_ID,
@@ -33,6 +35,9 @@ def matches_ai(c: Candidate) -> bool:
 
 
 def classify(c: Candidate) -> str:
+    # 分層專用來源（HF papers / Show HN / 觀點 feed）直接照來源指定
+    if c.default_category:
+        return c.default_category
     t = c.title or ""
     if TOOLS_REGEX.search(t):
         return "tools"
@@ -53,6 +58,10 @@ def rank_score(c: Candidate, now: int) -> float:
     weight = SOURCE_BY_ID[c.source_id].weight if c.source_id in SOURCE_BY_ID else 1.0
     if c.source_id == "hn":
         popularity = min((c.score or 0) / 400, 2.5) + min((c.comments or 0) / 250, 1.2)
+    elif c.source_id == "hf_papers":
+        popularity = min((c.score or 0) / 30, 2.5)  # upvotes
+    elif c.source_id == "hn_show":
+        popularity = min((c.score or 0) / 100, 2.0) + min((c.comments or 0) / 100, 0.8)
     else:
         popularity = 0.4  # 非 HN 沒有票數訊號，給固定小加成
     penalty = SCORE_PENALTY if NOISE_REGEX.search(c.title or "") else 1.0
@@ -94,7 +103,8 @@ def pick(
         c.picked = True
         return True
 
-    for cat in CATEGORY_ORDER:
+    # 先填研究 / 工具 / 觀點，頭條最後 —— 不然 HN 的名額會被頭條吃光
+    for cat in PICK_ORDER:
         for c in pool:
             if len(picked[cat]) >= CATEGORY_COUNTS[cat]:
                 break
@@ -105,17 +115,26 @@ def pick(
             if take(c):
                 picked[cat].append(c)
 
-    # 缺額回填：研究 / 工具 / 觀點候選不足時，把名額讓給次高分的頭條，
-    # 讓 digest 保持接近目標則數（但頭條不超過上限，不會整份都是頭條）。
+    # 缺額回填：只收「不比已選頭條弱太多」的候選。
+    # 寧可少一則，也不拿客戶案例之類的填充物湊數。
     while (
         sum(len(v) for v in picked.values()) < TOTAL_TARGET
         and len(picked["headline"]) < HEADLINE_BACKFILL_CAP
     ):
-        for c in pool:
-            if not c.picked and take(c):
-                picked["headline"].append(c)
+        floor = 0.0
+        if picked["headline"]:
+            floor = BACKFILL_MIN_RATIO * min(c.rank_score for c in picked["headline"])
+        added = False
+        for c in pool:  # pool 已依分數排序，低於門檻即可停
+            if c.picked:
+                continue
+            if c.rank_score < floor:
                 break
-        else:
+            if take(c):
+                picked["headline"].append(c)
+                added = True
+                break
+        if not added:
             break
 
     return picked, pool

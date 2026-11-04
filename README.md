@@ -15,13 +15,29 @@
 
 每則附：繁中 TLDR、2–4 個重點、一句「為什麼重要」、閱讀時間、HN 熱度（有的話）。
 
+### 名額是怎麼填的
+
+「研究 / 工具 / 觀點」有專用來源撐著，所以不會每天只剩新聞：
+
+| 分層 | 專用來源 | 名額 |
+|---|---|---|
+| 🔬 研究 | HF Daily Papers（每日社群票選論文） | 2 |
+| 🛠️ 工具 | HN Show HN（24 小時內、≥5 分） | 2 |
+| 💭 觀點 | Simon Willison、Latent Space、HN 上的經驗談 | 1 |
+
+選稿順序是**先填研究/工具/觀點、頭條最後**，避免頭條把 HN 的來源名額吃光。
+真的湊不滿時才回填頭條（最多 5 則），而且只收「分數不低於已選最弱頭條 50%」的候選 ——
+寧可少一則，也不拿填充物湊數。
+
 ## 運作方式
 
 ```
-Hacker News 首頁 + OpenAI/DeepMind/TechCrunch/Verge/Ars/Hugging Face RSS
-  → AI 關鍵字過濾
-  → 跨來源排序（新舊 × 來源權重 × HN 熱度）
-  → 單一來源最多 2 則
+Hacker News 首頁 + Show HN
++ OpenAI / DeepMind / Hugging Face / TechCrunch / Verge / Ars RSS
++ HF Daily Papers + Simon Willison / Latent Space
+  → AI 關鍵字過濾（官方 lab 與論文池直接放行）
+  → 跨來源排序（新舊 × 來源權重 × 社群熱度；客戶案例等噪音降權）
+  → 先填研究/工具/觀點，頭條最後；單一來源最多 2 則
   → 比對 SQLite 最近 14 天去重
   → 抓正文（trafilatura；失敗用 HN 熱門留言墊）
   → OpenCode CLI 摘要成繁中 JSON
@@ -140,13 +156,13 @@ AI-News/
 ├── ai_news/
 │   ├── config.py        # ← 所有設定：來源、關鍵字、分層、模型、路徑
 │   ├── models.py        # Candidate 資料模型、URL 去重 key
-│   ├── fetch/           # HN（Algolia）、RSS（feedparser）、正文抽取（trafilatura）
+│   ├── fetch/           # HN 首頁 / Show HN / RSS / HF Daily Papers / 正文抽取
 │   ├── rank.py          # 評分、分類（頭條/研究/工具/觀點）、選稿
 │   ├── summarize.py     # 摘要引擎（OpenCode CLI / OpenAI 相容 API）
 │   ├── store.py         # SQLite：今日快取 + 跨日去重 + 歷史搜尋
 │   ├── render.py        # Markdown 輸出 + index.md
 │   └── cli.py           # digest / open / show / search / install / uninstall
-├── digests/             # 每日輸出（gitignored，範例在 examples/）
+├── digests/             # 每日輸出（gitignored）
 └── skill/SKILL.md       # agent skill
 ```
 
