@@ -147,8 +147,7 @@ AI-News/
 │   ├── render.py        # Markdown 輸出 + index.md
 │   └── cli.py           # digest / open / show / search / install / uninstall
 ├── digests/             # 每日輸出（gitignored，範例在 examples/）
-├── skill/SKILL.md       # agent skill
-└── examples/            # 真實輸出範例
+└── skill/SKILL.md       # agent skill
 ```
 
 ## 已知限制
