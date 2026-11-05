@@ -107,6 +107,11 @@ GitHub Pages 就跟著更新。
 CI 每次都是乾淨的 checkout，沒有本機的 `data/state.db`。專案會自動從已入版控的
 `digests/*.md` 回填跨日去重 key，所以雲端跑出來的選稿結果和本機一致，不會每天重複同一批頭條。
 
+免費層 API 偶爾會回 429（限流）或 503（過載）。摘要引擎會依 `Retry-After` 或指數退避自動重試，
+同一個模型重試多次仍失敗時，會換 `AI_NEWS_FALLBACK_MODELS` 裡的備援模型（不同的額度池）。
+認證錯誤（401/403）和各模型「每日額度用完」不會浪費時間重試，直接標記該篇「未摘要」或換模型。
+workflow 預設把 `AI_NEWS_CONCURRENCY` 降到 2，減少撞到每分鐘限流的機會。
+
 ## CLI
 
 ```bash
@@ -148,6 +153,9 @@ git add digests data/news.json && git commit -m "Update daily digest"
 |---|---|---|
 | `AI_NEWS_PROVIDER` | `opencode` | `opencode`（本機 CLI）或 `api`（OpenAI 相容端點） |
 | `AI_NEWS_MODEL` | `opencode/deepseek-v4.1-flash-free` | 摘要用的模型 |
+| `AI_NEWS_API_RETRIES` | `4` | API 暫時失敗（429/5xx/連線）時同模型重試次數 |
+| `AI_NEWS_API_RETRY_BASE` | `2.0` | 指數退避起始秒數（2→4→8…，含 jitter） |
+| `AI_NEWS_FALLBACK_MODELS` | — | 逗號分隔的備援模型；主模型額度用完或持續失敗時換手 |
 | `AI_NEWS_DEDUP_DAYS` | `14` | 跨日去重天數 |
 | `AI_NEWS_DIGEST_DIR` | `./digests` | 輸出目錄；可直接指到 Obsidian vault |
 | `AI_NEWS_OBSIDIAN` | — | 設 `1` 時 `ai-news open` 用 `obsidian://` 開啟 |

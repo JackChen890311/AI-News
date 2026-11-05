@@ -29,6 +29,12 @@ jobs:
       AI_NEWS_API_BASE: https://generativelanguage.googleapis.com/v1beta/openai/
       # 想換模型就到 Settings → Variables 設 AI_NEWS_MODEL，不用改這個檔案。
       AI_NEWS_MODEL: ${{ vars.AI_NEWS_MODEL || 'gemini-3.5-flash-lite' }}
+      # 免費層被限流或該模型額度用完時，自動換這個模型重試。
+      AI_NEWS_FALLBACK_MODELS: ${{ vars.AI_NEWS_FALLBACK_MODELS || 'gemini-3.5-flash' }}
+      AI_NEWS_API_RETRIES: "4"
+      # 免費層對「每分鐘請求數」很敏感，平行 2 個比 4 個穩。
+      AI_NEWS_CONCURRENCY: "2"
+      AI_NEWS_SUMMARY_TIMEOUT: "60"
       AI_NEWS_API_KEY: ${{ secrets.AI_NEWS_API_KEY }}
       FORCE: ${{ inputs.force && 'true' || 'false' }}
 

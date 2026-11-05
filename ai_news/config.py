@@ -168,6 +168,16 @@ API_KEY = os.environ.get("AI_NEWS_API_KEY", "")
 SUMMARY_TIMEOUT = int(os.environ.get("AI_NEWS_SUMMARY_TIMEOUT", "240"))
 CONCURRENCY = int(os.environ.get("AI_NEWS_CONCURRENCY", "4"))
 
+# 免費層 API 常有 429/503；重試幾次，必要時換下一個模型（不同的額度池）。
+API_RETRIES = int(os.environ.get("AI_NEWS_API_RETRIES", "4"))
+API_RETRY_BASE = float(os.environ.get("AI_NEWS_API_RETRY_BASE", "2.0"))
+API_RETRY_MAX = float(os.environ.get("AI_NEWS_API_RETRY_MAX", "30"))
+API_FALLBACK_MODELS = [
+    m.strip()
+    for m in os.environ.get("AI_NEWS_FALLBACK_MODELS", "").split(",")
+    if m.strip()
+]
+
 # ---------- launchd 排程 ----------
 
 SCHEDULE_LABEL = os.environ.get("AI_NEWS_LAUNCHD_LABEL", "com.ainews.digest")
