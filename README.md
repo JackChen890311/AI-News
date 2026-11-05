@@ -1,6 +1,6 @@
 # 🗞️ AI News
 
-每日 AI 新聞摘要：多來源收集 → 排序 → 去重 → 抓正文 → 繁中摘要 → Obsidian-friendly Markdown。
+每日 AI 新聞摘要：多來源收集 → 排序 → 去重 → 抓正文 → 繁中摘要 → Obsidian-friendly Markdown，並附一個可直接部署的靜態新聞網站。
 
 ## 每天長這樣
 
@@ -99,6 +99,24 @@ uv run python -m ai_news show 2026-11-04           # 看某一天
 uv run python -m ai_news search "DeepSeek"         # 搜尋歷史摘要（標題 / 摘要 / 重點）
 ```
 
+## 靜態網站
+
+repo 內附一個零依賴的靜態網站（`index.html` + `assets/`），會把 `digests/*.md` 轉成 `data/news.json`，提供每日新聞、分類篩選、搜尋與日期切換。
+
+```bash
+uv run python scripts/build.py       # digests/*.md → data/news.json
+python -m http.server 8000           # 開啟 http://localhost:8000
+```
+
+`data/news.json` 已納入版控，部署時把整個 repo 當靜態站即可（GitHub Pages / Vercel / Cloudflare Pages）。
+每次更新 digest 後記得重新執行 `scripts/build.py` 並提交 `data/news.json`：
+
+```bash
+uv run python -m ai_news digest
+uv run python scripts/build.py
+git add digests data/news.json && git commit -m "Update daily digest"
+```
+
 ## 設定
 
 全部集中在一個檔案：[`ai_news/config.py`](ai_news/config.py)。
@@ -162,7 +180,11 @@ AI-News/
 │   ├── store.py         # SQLite：今日快取 + 跨日去重 + 歷史搜尋
 │   ├── render.py        # Markdown 輸出 + index.md
 │   └── cli.py           # digest / open / show / search / install / uninstall
-├── digests/             # 每日輸出（gitignored）
+├── digests/             # 每日 Markdown 輸出（也是網站建置來源）
+├── scripts/build.py     # digests/*.md → data/news.json
+├── data/news.json       # 網站資料（建置產物，已入版控）
+├── assets/              # 網站樣式與前端邏輯
+├── index.html           # 靜態網站入口
 └── skill/SKILL.md       # agent skill
 ```
 

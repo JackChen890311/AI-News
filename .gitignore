@@ -3,9 +3,8 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# 本機狀態（去重 DB、launchd log）
-data/
+# 本機狀態（去重 DB、launchd log）；網站建置產物 data/news.json 需入版控
+data/*
+!data/news.json
 
-# 個人產出的每日摘要（範例放在 examples/）
-digests/*
-!digests/.gitkeep
+# digests/ 是每日輸出，也是靜態網站的建置來源，納入版控

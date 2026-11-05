@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 每日新聞</title>
+  <meta name="description" content="每天 8 則 AI 相關新聞，繁中摘要。">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>🗞️ AI 每日新聞</h1>
+      <p class="tagline">每天 8 則 AI 相關新聞 · 繁中摘要 · 自動彙整</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls" aria-label="搜尋與篩選">
+      <div class="control-row">
+        <label class="field search-field">
+          <span>搜尋</span>
+          <input id="searchInput" type="search" placeholder="搜尋標題、摘要、重點…" autocomplete="off">
+        </label>
+      </div>
+      <div class="chips" id="categoryChips" role="group" aria-label="分類篩選"></div>
+    </section>
+
+    <section id="stats" class="stats" aria-live="polite"></section>
+    <section id="content" class="content" aria-live="polite"></section>
+
+    <section id="empty" class="empty" hidden>
+      <h2>目前沒有可顯示的新聞</h2>
+      <p>請把 <code>digests/YYYY-MM-DD.md</code> 放進網站的 <code>digests/</code> 資料夾，然後執行：</p>
+      <pre><code>python scripts/build.py</code></pre>
+      <p>重新整理頁面即可看到內容。</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>資料來源：<a href="https://github.com/jackchen890311/AI-News" target="_blank" rel="noopener">AI-News</a> · 由本機腳本自動建置</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
