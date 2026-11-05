@@ -23,7 +23,7 @@
 |---|---|---|
 | 🔬 研究 | HF Daily Papers（每日社群票選論文） | 2 |
 | 🛠️ 工具 | HN Show HN（24 小時內、≥5 分） | 2 |
-| 💭 觀點 | Simon Willison、Latent Space、HN 上的經驗談 | 1 |
+| 💭 觀點 | Latent Space、HN 上的經驗談 | 1 |
 
 選稿順序是**先填研究/工具/觀點、頭條最後**，避免頭條把 HN 的來源名額吃光。
 真的湊不滿時才回填頭條（最多 5 則），而且只收「分數不低於已選最弱頭條 50%」的候選 ——
@@ -33,8 +33,8 @@
 
 ```
 Hacker News 首頁 + Show HN
-+ OpenAI / DeepMind / Hugging Face / TechCrunch / Verge / Ars RSS
-+ HF Daily Papers + Simon Willison / Latent Space
++ OpenAI / Anthropic（Claude）/ DeepMind / Hugging Face / TechCrunch / Verge / Ars
++ HF Daily Papers + Latent Space
   → AI 關鍵字過濾（官方 lab 與論文池直接放行）
   → 跨來源排序（新舊 × 來源權重 × 社群熱度；客戶案例等噪音降權）
   → 先填研究/工具/觀點，頭條最後；單一來源最多 2 則
@@ -174,7 +174,7 @@ AI-News/
 ├── ai_news/
 │   ├── config.py        # ← 所有設定：來源、關鍵字、分層、模型、路徑
 │   ├── models.py        # Candidate 資料模型、URL 去重 key
-│   ├── fetch/           # HN 首頁 / Show HN / RSS / HF Daily Papers / 正文抽取
+│   ├── fetch/           # HN 首頁 / Show HN / RSS / HF Daily Papers / Anthropic 官方 news / 正文抽取
 │   ├── rank.py          # 評分、分類（頭條/研究/工具/觀點）、選稿
 │   ├── summarize.py     # 摘要引擎（OpenCode CLI / OpenAI 相容 API）
 │   ├── store.py         # SQLite：今日快取 + 跨日去重 + 歷史搜尋

@@ -68,6 +68,8 @@ SOURCES: list[Source] = [
            weight=1.15, kind="hn"),
     # 實驗室官方公告：第一手消息
     Source("openai", "OpenAI", "https://openai.com/blog/rss.xml", weight=1.5),
+    Source("anthropic", "Anthropic", "https://www.anthropic.com/news",
+           weight=1.5, kind="anthropic"),
     Source("deepmind", "Google DeepMind", "https://deepmind.google/blog/rss.xml", weight=1.5),
     # 媒體 AI 版
     Source("techcrunch", "TechCrunch",
@@ -84,9 +86,6 @@ SOURCES: list[Source] = [
     Source("hn_show", "HN Show",
            "https://hn.algolia.com/api/v1/search?tags=show_hn&hitsPerPage=30",
            weight=1.05, kind="hn_show", default_category="tools"),
-    Source("simonwillison", "Simon Willison",
-           "https://simonwillison.net/atom/everything/",
-           weight=1.1, default_category="opinion"),
     Source("latentspace", "Latent Space",
            "https://www.latent.space/feed",
            weight=1.0, default_category="opinion"),
@@ -96,7 +95,7 @@ SOURCE_BY_ID = {s.id: s for s in SOURCES}
 
 # 信任來源：官方實驗室 / 平台 blog、論文池，整個 feed 都是 AI 內容，
 # 不用再過 AI 關鍵字（不然 "Genie 4"、"SynthID Bio" 這種標題會被誤殺）。
-TRUSTED_SOURCES = {"openai", "deepmind", "huggingface", "hf_papers", "latentspace"}
+TRUSTED_SOURCES = {"openai", "anthropic", "deepmind", "huggingface", "hf_papers", "latentspace"}
 
 # ---------- 關鍵字 ----------
 
