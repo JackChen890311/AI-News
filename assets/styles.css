@@ -63,8 +63,14 @@ body {
   font-size: 0.95rem;
 }
 
-.tagline a { color: var(--accent); text-decoration: none; }
-.tagline a:hover { text-decoration: underline; }
+/* 作者與 footer 共用同一組連結樣式，確保顏色完全一致 */
+.text-link,
+.text-link:visited {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.text-link:hover { text-decoration: underline; }
 
 .controls {
   background: var(--surface);
@@ -357,8 +363,6 @@ body {
   font-size: 0.85rem;
 }
 
-.site-footer a { color: var(--accent); text-decoration: none; }
-.site-footer a:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
   .site-header h1 { font-size: 1.5rem; }
