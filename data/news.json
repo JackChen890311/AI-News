@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T16:04:21",
+  "generatedAt": "2026-11-05T16:41:04",
   "days": [
     {
       "date": "2026-11-05",
@@ -13,18 +13,18 @@
               "rank": 1,
               "title": "AI is forcing us to pay off 40 years of technical debt",
               "url": "https://spectrum.ieee.org/ai-in-cybersecurity-php2shell-vulnerability",
-              "tldr": "PHP2Shell 漏洞揭示 AI 正加速找出並利用人類累積 40 年的老舊軟體債務，防守與修補卻仍嚴重落後。",
+              "tldr": "AI 讓研究人員得以找出 PHP 老舊程式碼中的 PHP2Shell 漏洞，也凸顯四十年來累積的技術債正被逐一暴露。",
               "points": [
-                "PHP2Shell 源於 PHP 的記憶體配置錯誤，原本被視為只會導致當機的小 bug，2024 年通報後未修；Calif 研究員在 OpenAI 贊助下借助 AI，兩週內證明可執行任意程式碼。",
-                "漏洞影響 WordPress、Drupal 等大量網站，包括 NASA、Wikipedia、White House；PHP Foundation 動用四名工程師花兩個月修補，趕在遭利用前發布。",
-                "AI 讓頂尖少數專家能更快挖掘老舊程式漏洞，但找出漏洞遠比修補容易，開源專案資源不足使防守壓力更大。",
-                "專家呼籲投入更多資金與前沿 AI 模型，並以 LLM 生成修補與形式化證明來加速防禦；也有人悲觀認為要等更嚴重事件才會真正改革。"
+                "PHP2Shell 源自一個長期被當成單純崩潰的 out-of-memory 錯誤；Calif 研究員在 OpenAI 贊助下借助 AI 工具，發現它可被用來執行任意程式碼。",
+                "包括 NASA、Wikipedia、White House 在內，許多使用 WordPress 或 Drupal 的網站都受到影響，所幸修補程式在遭惡意利用前就已發布。",
+                "PHP Foundation 動用四名工程師、耗時兩個月才推出修補，凸顯找漏洞與修漏洞之間的根本不對稱。",
+                "專家呼籲投入更多資金與前沿 AI 模型保護開源軟體，並以 formal verification 自動化修補；也有人認為要等更嚴重的事件發生才會促成改變。"
               ],
-              "why": "這則新聞顯示 AI 正把過去被忽略的舊軟體弱點快速變成可實際利用的攻擊，暴露開源維護與修補資源的結構性缺口。",
+              "why": "這顯示 AI 正快速挖出過去被忽略的 legacy 軟體漏洞，防守方與開源生態的修補能力卻遠遠跟不上。",
               "meta": {
                 "source": "Hacker News",
-                "score": 1092,
-                "comments": 639,
+                "score": 1170,
+                "comments": 677,
                 "readingTime": 5,
                 "hnUrl": "https://news.ycombinator.com/item?id=50364336",
                 "summarized": true
@@ -33,43 +33,43 @@
             },
             {
               "rank": 2,
-              "title": "Factorized MLLM Embeddings for Composed Image Retrieval",
-              "url": "https://huggingface.co/papers/2611.05193",
-              "tldr": "FactEmbed 透過 factorized latents 先模擬目標圖像的視覺修改，將組合式查詢理解與檢索嵌入建構解耦，提升 composed image retrieval 表現。",
+              "title": "Kimi K3.1 Pro model weights are out",
+              "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+              "tldr": "Moonshot AI 釋出 Kimi K3.1 Pro 開源權重，屬 3T 級原生多模態代理模型，支援百萬 token 上下文。",
               "points": [
-                "FactEmbed 針對 Composed Image Retrieval（CIR），以參考圖加修改文字檢索目標圖像，主張現有 MLLM 方法的組合理解能力未被充分利用",
-                "方法先以中間的 target imagination 目標，讓一組 factorized latents 模擬預期的視覺修改，使其在形成檢索表徵前先對齊目標語意",
-                "訓練上採用 factor-level contrastive loss，並將分解後的表徵蒸餾到 MLLM 較深的注意力層",
-                "推論時保留 [EOS] token 建立全域嵌入，並以 mean-pooled factorized latents 對少量候選清單重新排序，兩者出自同一次前向傳遞，成本極低"
+                "MoE 架構：總參數 2.8T、每 token 啟用 104B，共 93 層，並以 69 層 KDA 加上 24 層 Gated DSA 取代全注意力，搭配 MoonViT-V2 視覺編碼器。",
+                "由 Kimi K3 後訓練而來，透過跨數百個下游領域的大規模聯合強化學習打造，是 K3.1 系列首個模型。",
+                "上下文長度達 1,048,576 token，在 coding、3D 創作、金融研究、事實準確度與代理能力上大幅提升，Terminal-Bench 4.0 得 65.7、BrowseComp 92.1、HLE-Full w/ tools 70.0。",
+                "權重以 moonshotai/Kimi-K3.1-Pro 名義發布，可用 Transformers、vLLM、SGLang 與 Docker Model Runner 部署，並採 MXFP4 權重、MXFP8 激活的量化感知訓練。"
               ],
-              "why": "它把組合式查詢的語意理解與判別式嵌入分開處理，在 CIR 基準上超越先前方法，也讓「參考圖＋文字修改」這種單一模態難以表達的檢索更可行。",
+              "why": "以開放權重釋出接近前沿的 3T 級多模態代理模型，讓開發者能自行部署並推動開源代理生態競爭。",
               "meta": {
-                "source": "HF Daily Papers",
-                "score": 44,
-                "comments": null,
-                "readingTime": 2,
-                "hnUrl": null,
+                "source": "Hacker News",
+                "score": 510,
+                "comments": 142,
+                "readingTime": 9,
+                "hnUrl": "https://news.ycombinator.com/item?id=50366999",
                 "summarized": true
               },
               "category": "headline"
             },
             {
               "rank": 3,
-              "title": "Gemini for Home now plugs into AT&T’s smart security system",
-              "url": "https://www.theverge.com/tech/1026787/att-gemini-for-home-connected-life-security-system",
-              "tldr": "AT&T 的 Connected Life 智慧家庭安全系統整合 Gemini for Home，可用 AI 摘要事件、以自然語言搜尋監視器影像。",
+              "title": "OpenAI to acquire Pierre Computer Company, Inc.",
+              "url": "https://openai.com/index/openai-to-acquire-pierre",
+              "tldr": "OpenAI 宣布收購 Pierre Computer Company，將把其 Trees、Diffs 等工具與 Git 工作流程整合進 Codex，強化程式碼建置、理解與審查能力。",
               "points": [
-                "Gemini for Home 能詳細描述攝影機拍到的事件，例如誰送來包裹、放下幾件物品。",
-                "用戶可用自然語言搜尋錄影畫面，並查看室內外活動的每日摘要。",
-                "這些功能僅限每月 29.99 美元的 Connected Life 專業監控方案，AT&T 同時新增依位置自動布防或撤防的功能。",
-                "Connected Life 於去年 12 月與 Google、Amber 合作推出，現採用 Gemini 驅動的 Home APIs；ADT 也暗示將導入類似功能。"
+                "Pierre 是 Code Storage 及多項開源開發者工具背後的公司，Codex 應用程式中的 Trees 與 Diffs 函式庫即出自其手。",
+                "OpenAI 本週才公布自研原始碼控制後端 Pando，目標是讓 Git 相關系統能支援大量並行作業的開發者與 agent。",
+                "Pierre 近期推出可隨輸入或 agent 串流即時更新的高速語法高亮工具 Highlights，Diffs 的 Edit 模式則可直接在審查處修改程式碼。",
+                "收購完成後 Pierre 的開源專案將維持開源，Code Storage 客戶可繼續使用，功能會逐步併入 Codex；交易仍待監管機關核准。"
               ],
-              "why": "這代表 Gemini 從手機與語音助理進一步走入實體家庭安全服務，AI 成為監控訂閱方案的新賣點。",
+              "why": "這顯示 OpenAI 不只做模型，還想從 Git 與程式碼審查等底層工作流程切入，爭取成為開發者與 AI agent 協作的核心平台。",
               "meta": {
-                "source": "The Verge",
+                "source": "OpenAI",
                 "score": null,
                 "comments": null,
-                "readingTime": 1,
+                "readingTime": 2,
                 "hnUrl": null,
                 "summarized": true
               },
@@ -83,43 +83,43 @@
           "items": [
             {
               "rank": 1,
-              "title": "Ripple-65B Preview: U.S. Open-Weight SOTA on Agentic Coding",
-              "url": "https://www.ricursive.com/ripple",
-              "tldr": "Ricursive Intelligence 發布 Ripple-65B Preview，以 650 億參數的 dense 模型在 agentic coding 拿下美國開源權重 SOTA，訓練成本僅 3200 萬美元。",
+              "title": "Turns Matter: Advancing Streaming Video RL via Turn-Level Credit",
+              "url": "https://huggingface.co/papers/2611.06728",
+              "tldr": "研究提出 TurnWise，一個以「輪次層級信用分配」改進串流影片理解的 GRPO 強化學習框架，讓模型在每輪決定回答或繼續觀察時獲得更精準的學習訊號。",
               "points": [
-                "Ripple-65B Preview 在 TerminalBench 2.1 拿下 80.52 分，超越 Reflection Beam 501B（80.1）、Meta Muse Spark Open 816B（76.4）等更大的美國開源模型。",
-                "模型以 12 兆 token 預訓練，支援最高 1M context，全程 R&D 成本僅 3200 萬美元，約為前一代開源 SOTA 的十分之一。",
-                "捨棄 MoE 改用現代化 dense Transformer，維持 40% MFU，且可在 NVIDIA DGX Spark 等本地裝置上高效執行。",
-                "靠自建合成資料與混合 RL 配方，僅用 140 萬次 rollout 就達到 80.5 分，約為 Reflection Beam 的七十分之一；已上架 Hugging Face、Together AI、GMI Cloud 與 OpenRouter。"
+                "現有 GRPO 應用於串流影片時，所有輪次共用同一條軌跡層級優勢值，導致早先成功後的冗余回答被強化、早先失敗後的有用追問被抑制",
+                "TurnWise 以 silence-completed prefix scoring 依每次決策的剩餘回報建構群組相對優勢，將學習訊號與先前獎勵分離",
+                "Turn-mean policy optimization 先在每輪內平均 token 損失、再跨輪平均，使回答與等待決策權重相等，不受輸出長度影響",
+                "此設計無需 learned critic 或額外 rollouts，實驗顯示在串流影片理解上優於既有 RL 方法"
               ],
-              "why": "這則新聞顯示美國開源權重模型首次在 agentic coding 上以極低成本逼近前沿，可能改變開源模型競賽的成本與架構路線。",
+              "why": "它指出串流影片 RL 中「軌跡層級回饋」與「輪次層級互動」的錯配問題，為即時影片理解的強化學習訓練提供更細緻的信用分配方式。",
               "meta": {
-                "source": "Hacker News",
-                "score": 233,
-                "comments": 79,
-                "readingTime": 5,
-                "hnUrl": "https://news.ycombinator.com/item?id=50369925",
+                "source": "HF Daily Papers",
+                "score": 48,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
                 "summarized": true
               },
               "category": "research"
             },
             {
               "rank": 2,
-              "title": "DreamX: Video Diffusion Model is a Universal Latent Action Learner",
-              "url": "https://huggingface.co/papers/2611.05377",
-              "tldr": "DreamX 把預訓練影片擴散模型改造成通用潛在動作學習器，從影片中萃取與外觀無關的緊湊動作表示。",
+              "title": "GameVerse: A Minute-Scale Gameplay Dataset for Long-Horizon Interactive World Modeling",
+              "url": "https://huggingface.co/papers/2610.37257",
+              "tldr": "GameVerse 推出分鐘級遊戲影片資料集，用以改善長時序互動世界模型的生成連貫性。",
               "points": [
-                "DreamX 將每幀 1,200 個 token 壓縮到 4 個，實現 300 倍壓縮的緊湊潛在動作。",
-                "藉助影片模型的生成先驗，潛在動作只保留動作相關動態，排除 embodiment 與外觀差異。",
-                "在 LARY-Bench 上取得 latent action 模型的最佳表現，並支援 any-to-any 影片轉換與跨 embodiment 的 zero-shot 動作轉移。",
-                "此共享動作介面可用於緊湊潛在動作空間的策略學習，降低基於影片擴散模型之策略的運算成本。"
+                "現有遊戲影片資料集多為十秒以下短片，字幕粗糙且未區分內容，使模型難以維持超過約一分鐘的連貫性。",
+                "GameVerse 含 69.7K 片段、1,655 小時、3.496 億幀，其中 1,358 小時為連續兩分鐘序列，比先前資料集長一個量級。",
+                "資料經場景一致分割、品質過濾、相機姿態估計與事件式字幕標註，字幕區分靜態場景脈絡與動態前景事件。",
+                "實驗顯示，以 GameVerse 訓練可顯著延長互動世界模型的時間視野。"
               ],
-              "why": "它提供一個跨人類與機器人、跨環境的通用動作介面，有助於降低機器人策略學習的成本並提升可轉移性。",
+              "why": "它補上長時序訓練資料的缺口，讓可控制的互動世界模型能維持更長時間的連貫生成。",
               "meta": {
                 "source": "HF Daily Papers",
-                "score": 51,
+                "score": 31,
                 "comments": null,
-                "readingTime": 2,
+                "readingTime": 1,
                 "hnUrl": null,
                 "summarized": true
               },
@@ -135,13 +135,14 @@
               "rank": 1,
               "title": "Open source AI is booming. Hugging Face explains who profits.",
               "url": "https://techcrunch.com/video/open-source-ai-is-booming-hugging-face-explains-who-profits/",
-              "tldr": "開源 AI 模型日益主流，Hugging Face 高層在 TechCrunch 播客談企業與新創如何從中獲利。",
+              "tldr": "Hugging Face 策略長在 TechCrunch 播客談開源 AI 熱潮下企業如何獲利，以及新創投入前該注意的取捨。",
               "points": [
-                "開源模型因成本較低、可控性與彈性更高，正被企業、政府與新創廣泛採用。",
-                "Hugging Face 政策長 Irene Solaiman 說明新創採用開源模型前，需選對工具與基礎設施並權衡取捨。",
-                "中國開源模型聲勢漸起，美國業者能否保持競爭力成為關注焦點。"
+                "企業、政府和初創企業因成本較低、控制力與彈性更高，而更廣泛採用開源模型。",
+                "文章探討當能力日益強大的模型更自由地開放後，公司如何創造並獲取價值。",
+                "中國開源模型崛起，美國業者面臨能否保持競爭力的問題。",
+                "Hugging Face 的 Irene Solaiman 說明新創在建構開源模型前，從工具、基礎設施到權衡取捨的重點。"
               ],
-              "why": "這則新聞凸顯開源 AI 商業模式與美中競爭的關鍵課題，值得新創與企業評估布局時參考。",
+              "why": "開源模型日益主流，其獲利模式與美中競爭將影響企業、政府和新創的採用策略。",
               "meta": {
                 "source": "TechCrunch",
                 "score": null,
@@ -156,14 +157,14 @@
               "rank": 2,
               "title": "Building on open source AI? Hugging Face’s policy chief on the costs, risks, and trade-offs",
               "url": "https://techcrunch.com/podcast/building-on-open-source-ai-hugging-faces-policy-chief-on-the-costs-risks-and-trade-offs/",
-              "tldr": "Hugging Face 政策長談開放原始碼 AI 的成本、風險與取捨，以及企業、政府與新創採用開放模型的考量。",
+              "tldr": "Hugging Face 政策主管談企業與新創採用開源 AI 模型的成本、風險與取捨，以及美國如何應對中國開源模型崛起。",
               "points": [
-                "新創、企業與政府因成本較低、控制權與彈性而轉向開放 AI 模型，但有時未必需要用最強大的模型。",
-                "模型免費使用時，價值由誰獲取，以及開發模型的企業能否回收所創造的價值，仍是關鍵問題。",
-                "美國可能需要 Nvidia 等資源雄厚的業者打造開放前沿模型，以與中國模型競爭，避免中國模型成為全球預設。",
-                "近期針對開放 AI 平台的攻擊，凸顯如何在維持開放生態的同時確保安全。"
+                "開源模型因成本較低、控制權與彈性更高而日益主流，企業、政府與新創都在採用。",
+                "模型免費使用時，誰能獲取價值、開發者能否回收投入，仍是關鍵問題。",
+                "中國開源模型持續攻城掠地，美國可能需要 Nvidia 等雄厚資本玩家打造開放前沿模型以維持競爭力。",
+                "近期針對開源 AI 平台的攻擊，突顯如何在維持開放生態的同時確保安全的两難。"
               ],
-              "why": "開放模型快速普及，但商業價值、地緣競爭與安全風險將決定開放 AI 能否成為全球主流。",
+              "why": "這場訪談勾勒開源 AI 的商業模式、地緣競爭與安全風險，為考慮採用開源模型的團隊提供決策參考。",
               "meta": {
                 "source": "TechCrunch",
                 "score": null,
@@ -182,18 +183,16 @@
           "items": [
             {
               "rank": 1,
-              "title": "[AINews] Behind Latent Space: Kill My SaaS, Jev & AI in 2026 | AIEi Shanghai",
-              "url": "https://latent.space/p/ainews-behind-latent-space-kill-my-saas-jev-ai-in-2026-aiei-shanghai/",
-              "tldr": "AINews 11/02–11/03 摘要：Weight-Space Programming 引發爭議與多方複現，並收錄 AI Engineer Shanghai、多款模型發布、評測稽核與產業政策動態。",
+              "title": "[AINews] It's Swapping Season",
+              "url": "https://latent.space/p/ainews-it-s-swapping-season/",
+              "tldr": "AI 圈人才與公司大洗牌：Anthropic、OpenAI、Meta、AMD 高層與團隊互換，同時 OpenAI 揭露自動化管線一週修補 948 個 Linux 核心漏洞。",
               "points": [
-                "主編回應「Weight Space Programming」標題爭議，承認部分說法過於樂觀，但因已有多個獨立複現，不打算撤回或改發更正報導。",
-                "Weight-space 研究持續延燒：Hugging Face 用 ML Intern 複現論文，GPT-6 Astra 直接改寫 Qwen3.5-0.8B 權重提升 MATH-500，但批評者指出多為修掉 32K token 迴圈 bug，並非遞迴自我改進。",
-                "模型發布密集：Tencent Hy4 稱 APEX-Agents 達 75.2 勝過 DeepSeek V4.1 Flash-1017，Sarvam Prism 以 44ms 中位延遲主打決策任務，Kimi K3.1 Pro、P-H3-Image、LongCat-2.5 等開放權重陸續釋出。",
-                "安全與評測面向：Anthropic 開源可驗證推論系統 FlashProve，Prime Intellect 與其他稽核修復多個公開 benchmark 漏洞，SemiAnalysis 的 GDPx 因 GPT-6 Astra 全部拒答而在 cyber 項目得 0 分。",
-                "代理與基礎設施進展：Google XLA 用 agent swarms 找出 142+ 個 TPU 編譯器靜默錯誤，vLLM v0.33.0 在 GB300 上帶來 1.5–2× decode 加速，ThunderAgent 併入 llm-d。",
-                "產業與政策：資料中心議題進入約 13 州、40 個地方公投，ChatGPT 搜尋量已達 Google 的 20%，Revolut 讓約 2000 名工程師預設使用開放模型。"
+                "Cat Wu 離開 Anthropic 的 Claude Code 團隊，轉投 OpenAI 主管 Core Products PM；Sharon Zhou 則離開 AMD 加入 Anthropic。",
+                "Factory 收購 HumanLayer，Meta 收購 Conductor，後者被形容為今年被大量模仿的產品形態先驅。",
+                "OpenAI 以未發布的網路安全模型，花約 120 萬美元 API 成本驗證並生成 948 個 Linux 核心本地提權漏洞的修補，並稱發現至少 10 種新攻擊手法。",
+                "開源權重模型齊發：Moonshot 釋出 Kimi K3.1 Pro（2.8T 總參數、104B 激活、1M context），Ricursive 推出 Ripple-65B，Cognition 發布 SWE-2 Flash，Tencent 推出 Hy4。"
               ],
-              "why": "這份摘要同時勾勒出「直接編輯模型權重」這條技術路線的真實邊界，以及模型、評測與基礎設施的快速演進，是掌握 2026 年 AI 產業節奏的縮影。",
+              "why": "人才流動與併購同步發生，加上開源模型與資安自動化能力躍進，顯示前沿實驗室的競爭已從模型本身延伸到產品、人才與漏洞防禦。",
               "meta": {
                 "source": "Latent Space",
                 "score": null,
