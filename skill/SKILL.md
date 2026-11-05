@@ -21,3 +21,21 @@ description: 抓取並瀏覽每日 AI 新聞摘要。當使用者問「今天 AI
 2. 執行後把螢幕輸出的重點用繁體中文向使用者摘述：每個分層（頭條 / 研究 / 工具 / 觀點）各 1–2 句，附上 1–2 個最有興趣的連結。
 3. 使用者想深入某一篇時，用 `search` 找歷史紀錄，或直接開啟對應的 digests/YYYY-MM-DD.md。
 4. 若出現「未摘要」，告知使用者該篇只有來源簡介（LLM 摘要失敗），可用 `digest --force` 重試。
+
+## 更新網站並發布（每次產生新摘要後必做）
+
+GitHub Pages 直接從此 repo 發布，所以 digest 更新後一定要重建 `data/news.json` 並 push：
+
+```bash
+cd ~/Desktop/Jack/Github/AI-News
+uv run python scripts/build.py
+git add digests data/news.json
+git commit -m "Update daily digest YYYY-MM-DD"
+git push
+```
+
+注意事項：
+
+- commit 前先確認 `git status`，只加入 `digests/` 與 `data/news.json`，不要提交 `data/state.db`、`.venv/` 等本機檔案。
+- 若 `git status` 顯示沒有變更（例如今天用快取、內容完全沒變），跳過 commit 和 push，並告知使用者網站已是最新。
+- push 後確認輸出沒有錯誤；成功時告知使用者網站已隨 GitHub Pages 更新。
