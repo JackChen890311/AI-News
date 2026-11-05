@@ -63,6 +63,9 @@ body {
   font-size: 0.95rem;
 }
 
+.tagline a { color: var(--accent); text-decoration: none; }
+.tagline a:hover { text-decoration: underline; }
+
 .controls {
   background: var(--surface);
   border: 1px solid var(--border);
