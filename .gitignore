@@ -3,6 +3,10 @@ __pycache__/
 *.pyc
 .DS_Store
 
+# 本機憑證；雲端請用 GitHub Actions secrets
+.env
+!.env.example
+
 # 本機狀態（去重 DB、launchd log）；網站建置產物 data/news.json 需入版控
 data/*
 !data/news.json

@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 import threading
 from datetime import datetime, timedelta
@@ -35,6 +36,15 @@ CREATE TABLE IF NOT EXISTS items (
     created_at   TEXT,
     PRIMARY KEY (date, category, rank)
 );
+
+-- 只用來記錄「看過哪些 URL」。CI 每次都是全新的 DB，
+-- 這張表讓程式可以從既有的 digests/*.md 回填跨日去重資料，
+-- 又不會影響今日快取（count_today 只看 items）。
+CREATE TABLE IF NOT EXISTS seen (
+    key  TEXT PRIMARY KEY,
+    date TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_seen_date ON seen(date);
 """
 
 _CATEGORY_SQL_ORDER = (
@@ -86,7 +96,45 @@ class Store:
             keys.add(r["dedup_id"])
             if r["url"]:
                 keys.add(dedup_key(r["url"]))
+        for r in self.conn.execute("SELECT key FROM seen WHERE date >= ?", (cutoff,)):
+            keys.add(r["key"])
         return keys
+
+    def remember(self, key: str, date: str) -> None:
+        """記住一個已用過的 URL；純去重用途，不影響今日快取。"""
+        with self._lock:
+            self.conn.execute(
+                "INSERT OR IGNORE INTO seen (key, date) VALUES (?, ?)", (key, date)
+            )
+            self.conn.commit()
+
+    def backfill_from_digests(self, digests_dir: str | Path) -> int:
+        """把既有 digests/*.md 裡的連結回填成去重 key。
+
+        GitHub Actions 每次都是乾淨的 checkout、沒有 data/state.db，
+        少了這步就會每天重新選到同一批頭條。回填只寫 seen 表，
+        所以不會讓今天的 digest 被誤判成「已有快取」。
+        """
+        link_re = re.compile(r"^###\s+\d+\.\s+\[.*?\]\((\S+?)\)\s*$", re.M)
+        added = 0
+        for path in sorted(Path(digests_dir).glob("????-??-??.md")):
+            date = path.stem
+            try:
+                text = path.read_text(encoding="utf-8")
+            except OSError:
+                continue
+            for url in link_re.findall(text):
+                key = dedup_key(url)
+                if not key:
+                    continue
+                with self._lock:
+                    cur = self.conn.execute(
+                        "INSERT OR IGNORE INTO seen (key, date) VALUES (?, ?)",
+                        (key, date),
+                    )
+                    added += cur.rowcount
+            self.conn.commit()
+        return added
 
     # ---- 寫入 / 搜尋 ----
 

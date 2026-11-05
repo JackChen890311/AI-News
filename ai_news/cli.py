@@ -152,6 +152,16 @@ def _print_digest(items: list[dict], date: str, cached: bool) -> None:
 def cmd_digest(args) -> int:
     date = datetime.now().astimezone().date().isoformat()
     store = Store(DB_PATH)
+
+    # CI 每次都是全新的 DB；從已入版控的 digests/ 回填去重 key，
+    # 才不會因為沒有 data/state.db 而每天重複選到同一批新聞。
+    try:
+        added = store.backfill_from_digests(DIGESTS_DIR)
+        if added:
+            _log(f"♻️  從歷史 digests 回填 {added} 個去重 key")
+    except Exception as e:  # 回填失敗不該擋住今天的 digest
+        _log(f"（回填去重 key 失敗，忽略：{e}）")
+
     cached = False
 
     if not args.force and store.count_today(date) >= CACHE_MIN_ITEMS:

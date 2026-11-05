@@ -1,0 +1,74 @@
+name: Daily AI News Digest
+
+on:
+  schedule:
+    # GitHub Actions 的 cron 是 UTC。00:30 UTC = 08:30 Asia/Taipei。
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "重新產生今天的摘要（忽略既有 digests/YYYY-MM-DD.md）"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # cmd_digest 用 datetime.now().astimezone()，沒設 TZ 會變成 UTC 日期。
+      TZ: Asia/Taipei
+      AI_NEWS_PROVIDER: api
+      AI_NEWS_API_BASE: https://generativelanguage.googleapis.com/v1beta/openai/
+      # 想換模型就到 Settings → Variables 設 AI_NEWS_MODEL，不用改這個檔案。
+      AI_NEWS_MODEL: ${{ vars.AI_NEWS_MODEL || 'gemini-3.5-flash-lite' }}
+      AI_NEWS_API_KEY: ${{ secrets.AI_NEWS_API_KEY }}
+      FORCE: ${{ inputs.force && 'true' || 'false' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Generate digest
+        id: digest
+        run: |
+          TODAY=$(date +%F)
+          if [ "$FORCE" != "true" ] && [ -f "digests/${TODAY}.md" ]; then
+            echo "digests/${TODAY}.md 已存在，跳過產生（workflow_dispatch 勾 force 可重跑）。"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$FORCE" = "true" ]; then
+            uv run python -m ai_news digest --force
+          else
+            uv run python -m ai_news digest
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Build site data
+        if: steps.digest.outputs.skip != 'true'
+        run: uv run python scripts/build.py
+
+      - name: Commit and push
+        if: steps.digest.outputs.skip != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add digests data/news.json
+          if git diff --cached --quiet; then
+            echo "沒有變更，略過 commit。"
+            exit 0
+          fi
+          git commit -m "Update daily digest $(date +%F)"
+          git push

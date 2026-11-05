@@ -87,6 +87,26 @@ uv run python -m ai_news uninstall      # 移除
 
 排程跑起來的機器要先開著；錯過的排程會在你解鎖 / 喚醒後補跑。
 
+### 雲端排程（GitHub Actions，不用開電腦）
+
+[`.github/workflows/digest.yml`](.github/workflows/digest.yml) 每天 08:30（台北時間）自動跑，
+用 Gemini 的 OpenAI 相容端點做摘要，跑完把 `digests/` 與 `data/news.json` commit 回 repo，
+GitHub Pages 就跟著更新。
+
+一次性設定：
+
+1. 到 <https://aistudio.google.com/apikey> 申請 Gemini API key。
+2. Repo → **Settings → Secrets and variables → Actions → New repository secret**
+   新增 `AI_NEWS_API_KEY`，值是那把 key。**不要**把 key 寫進 workflow 或 `.env` 後 commit。
+3. （可選）同一頁的 **Variables** 新增 `AI_NEWS_MODEL` 覆蓋預設模型，
+   例如 `gemini-3.5-flash`（預設是 `gemini-3.5-flash-lite`）。
+
+要手動測試：Actions → **Daily AI News Digest** → **Run workflow**；
+勾 `force` 會忽略當天既有的 `digests/YYYY-MM-DD.md` 重新產生。
+
+CI 每次都是乾淨的 checkout，沒有本機的 `data/state.db`。專案會自動從已入版控的
+`digests/*.md` 回填跨日去重 key，所以雲端跑出來的選稿結果和本機一致，不會每天重複同一批頭條。
+
 ## CLI
 
 ```bash
@@ -190,7 +210,7 @@ AI-News/
 
 ## 已知限制
 
-- 排程跑在本機，電腦要開著（要雲端可改用 GitHub Actions cron 呼叫同一個 CLI + API 摘要）。
+- 本機排程（launchd）需要電腦開著；想完全不開機就用上面的 GitHub Actions 雲端排程。
 - 有些站會擋爬蟲（paywall / 403），這時自動退回 RSS 簡介或 HN 留言，摘要品質會下降。
 - 免費模型的摘要偶爾格式跑掉；解析失敗會退回來源簡介並標註「未摘要」，跑 `--force` 可重試。
 
