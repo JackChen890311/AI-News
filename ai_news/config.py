@@ -189,6 +189,17 @@ MAX_OUTPUT_TOKENS = int(os.environ.get("AI_NEWS_MAX_TOKENS", "2048"))
 # 留時間給抓取、build site 與 commit。
 TIME_BUDGET = int(os.environ.get("AI_NEWS_TIME_BUDGET", "0"))
 
+# ---------- 去重 ----------
+
+# 標題相似度門檻（0–1）。同一事件的不同標題通常 > 0.82；
+# 太低的門檻會誤殺「同公司但不同產品」的新聞。
+TITLE_DEDUP_RATIO = float(os.environ.get("AI_NEWS_TITLE_DEDUP_RATIO", "0.82"))
+# 摘要相似度門檻。摘要會改寫，所以比標題寬；預設只抓明顯同一事件。
+SUMMARY_DEDUP_RATIO = float(os.environ.get("AI_NEWS_SUMMARY_DEDUP_RATIO", "0.65"))
+# 關掉任何一層去重（除錯用）。
+TITLE_DEDUP = os.environ.get("AI_NEWS_TITLE_DEDUP", "1") != "0"
+SUMMARY_DEDUP = os.environ.get("AI_NEWS_SUMMARY_DEDUP", "1") != "0"
+
 # ---------- launchd 排程 ----------
 
 SCHEDULE_LABEL = os.environ.get("AI_NEWS_LAUNCHD_LABEL", "com.ainews.digest")

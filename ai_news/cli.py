@@ -21,6 +21,7 @@ import shutil
 import subprocess
 import sys
 import time
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
@@ -33,13 +34,17 @@ from .config import (
     DB_PATH,
     DEDUP_DAYS,
     DIGESTS_DIR,
+    MAX_PER_SOURCE,
     MIN_CONTENT_LENGTH,
+    PICK_ORDER,
     REPO_ROOT,
     SCHEDULE_HOUR,
     SCHEDULE_LABEL,
     SCHEDULE_MINUTE,
+    SUMMARY_DEDUP,
     DATA_DIR,
 )
+from .dedup import duplicate_reason, is_title_duplicate
 from .fetch import collect_all
 from .fetch.extract import fetch_article_text
 from .fetch.hn import fetch_hn_comments
@@ -58,9 +63,12 @@ def _log(msg: str) -> None:
 
 
 def _process_one(
-    date: str, category: str, rank: int, c: Candidate, no_summarize: bool, store: Store
+    category: str, rank: int, c: Candidate, no_summarize: bool
 ) -> dict | None:
-    """單則流程：抓正文 → 摘要 → 存 DB。任何一步失敗都有備援，不讓整份 digest 開天窗。"""
+    """單則流程：抓正文 → 摘要。任何一步失敗都有備援，不讓整份 digest 開天窗。
+
+    這裡刻意不寫 DB：摘要去重可能會淘汰這一則，等最後名單確定再統一存。
+    """
     text: str | None = None
     pdf_url: str | None = None
     summarized = False
@@ -104,10 +112,6 @@ def _process_one(
             _log(f"  ✅ [{c.source_label}] {c.title[:60]}")
 
     summary_mode = summary.mode or ("llm" if summarized else "")
-    store.save_item(
-        date, category, rank, c, summary.tldr, summary.points, summary.why,
-        rt, summarized, summary_mode,
-    )
     return {
         "category": category,
         "rank": rank,
@@ -124,7 +128,106 @@ def _process_one(
         "hn_url": c.hn_url,
         "summarized": summarized,
         "summary_mode": summary_mode,
+        "_candidate": c,
     }
+
+
+def _slot_sort_key(item: dict) -> tuple[int, int]:
+    try:
+        order = PICK_ORDER.index(item["category"])
+    except ValueError:
+        order = len(PICK_ORDER)
+    return order, item["rank"]
+
+
+def _dedupe_after_summary(
+    items: list[dict], pool: list[Candidate], no_summarize: bool
+) -> list[dict]:
+    """摘要產生後比對同一事件；被淘汰的缺額用同分層 reserve 補上。
+
+    選稿前的 URL／標題去重已經處理大部分情況。這裡是最後一道：
+    不同網址、不同標題，但摘要講的是同一件事時，只留一則。
+    保留順序是研究 → 工具 → 觀點 → 頭條，避免稀缺分層被頭條擠掉。
+    """
+    if no_summarize or not SUMMARY_DEDUP or not items:
+        return items
+
+    kept: list[dict] = []
+    dropped: list[dict] = []
+
+    for item in sorted(items, key=_slot_sort_key):
+        reason = duplicate_reason(item, kept)
+        if reason:
+            _log(f"  🔁 摘要去重：{item['title'][:55]}（{reason}）")
+            dropped.append(item)
+            continue
+        kept.append(item)
+
+    if not dropped:
+        return kept
+
+    reserves = [c for c in pool if not c.picked]
+    used_sources = Counter(it["_candidate"].source_id for it in kept)
+    used_keys: set[str] = set()
+    for it in kept:
+        used_keys.update(it["_candidate"].dedup_keys)
+
+    for lost in dropped:
+        category, rank = lost["category"], lost["rank"]
+        replaced = False
+        for c in reserves:
+            if c.picked:
+                continue
+            if c.category != category:
+                continue
+            if used_sources[c.source_id] >= MAX_PER_SOURCE:
+                continue
+            if c.dedup_keys & used_keys:
+                c.picked = True
+                continue
+            if is_title_duplicate(c.title, [it["title"] for it in kept]):
+                c.picked = True
+                continue
+
+            c.picked = True
+            new_item = _process_one(category, rank, c, no_summarize)
+            if not new_item:
+                continue
+            reason = duplicate_reason(new_item, kept)
+            if reason:
+                _log(f"  🔁 替補也重複：{c.title[:55]}（{reason}）")
+                continue
+
+            kept.append(new_item)
+            used_sources[c.source_id] += 1
+            used_keys.update(c.dedup_keys)
+            replaced = True
+            _log(f"  ➕ 補上：{c.title[:60]}")
+            break
+
+        if not replaced:
+            _log(f"  ⚠️  {CATEGORY_LABELS.get(category, category)}沒有合適替補，今天少一則")
+
+    return kept
+
+
+def _persist_items(store: Store, date: str, items: list[dict]) -> None:
+    """等最終名單確定後才寫 DB，避免被去重淘汰的項目留在快取裡。"""
+    store.replace_day(date)
+    for item in items:
+        c = item.pop("_candidate")
+        store.save_item(
+            date,
+            item["category"],
+            item["rank"],
+            c,
+            item["tldr"],
+            item["points"],
+            item["why"],
+            item["reading_time"],
+            item["summarized"],
+            item["summary_mode"],
+        )
 
 
 def _print_digest(items: list[dict], date: str, cached: bool) -> None:
@@ -197,14 +300,17 @@ def cmd_digest(args) -> int:
         if args.force:
             store.replace_day(date)
         exclude = store.recent_keys(DEDUP_DAYS)
+        exclude_titles = store.recent_titles(DEDUP_DAYS)
         now = int(time.time())
 
-        _log(f"🔍 收集候選中（去重比對最近 {DEDUP_DAYS} 天，{len(exclude)} 個已知 key）…")
+        _log(
+            f"🔍 收集候選中（去重比對最近 {DEDUP_DAYS} 天，"
+            f"{len(exclude)} 個已知 key、{len(exclude_titles)} 個標題）…"
+        )
         cands = collect_all()
         _log(f"📰 {len(cands)} 個候選")
 
-        picked, pool = pick(cands, exclude, now)
-        from collections import Counter
+        picked, pool = pick(cands, exclude, now, exclude_titles)
 
         _log(f"📊 候選分類統計：{dict(Counter(c.category for c in pool))}")
         flat = [(cat, i + 1, c) for cat in CATEGORY_ORDER for i, c in enumerate(picked[cat])]
@@ -218,7 +324,7 @@ def cmd_digest(args) -> int:
         items = []
         with ThreadPoolExecutor(max_workers=CONCURRENCY) as ex:
             futures = [
-                ex.submit(_process_one, date, cat, rank, c, args.no_summarize, store)
+                ex.submit(_process_one, cat, rank, c, args.no_summarize)
                 for cat, rank, c in flat
             ]
             for fut in as_completed(futures):
@@ -233,8 +339,21 @@ def cmd_digest(args) -> int:
         if not items:
             _log("❌ 沒有任何一則成功處理")
             return 1
+
+        # 最後一道去重：摘要都產生了，用標題＋TLDR 再比對一次同一事件。
+        # --limit 是測試用，維持原樣不動。
+        if not args.limit:
+            items = _dedupe_after_summary(items, pool, args.no_summarize)
+
         order = {cat: i for i, cat in enumerate(CATEGORY_ORDER)}
         items.sort(key=lambda it: (order[it["category"]], it["rank"]))
+        # 去重補位後可能出現缺號，依分層重新編號。
+        counters: Counter = Counter()
+        for it in items:
+            counters[it["category"]] += 1
+            it["rank"] = counters[it["category"]]
+
+        _persist_items(store, date, items)
 
     md = render_markdown(date, items)
     DIGESTS_DIR.mkdir(parents=True, exist_ok=True)

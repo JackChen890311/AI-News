@@ -19,11 +19,13 @@ from .config import (
     RESEARCH_REGEX,
     SCORE_PENALTY,
     SOURCE_BY_ID,
+    TITLE_DEDUP,
     TOOLS_REGEX,
     TOTAL_TARGET,
     TRUSTED_SOURCES,
     AI_REGEX,
 )
+from .dedup import is_title_duplicate
 from .models import Candidate
 
 
@@ -69,24 +71,33 @@ def rank_score(c: Candidate, now: int) -> float:
 
 
 def pick(
-    cands: list[Candidate], exclude_keys: set[str], now: int
+    cands: list[Candidate],
+    exclude_keys: set[str],
+    now: int,
+    exclude_titles: list[str] | None = None,
 ) -> tuple[dict[str, list[Candidate]], list[Candidate]]:
     """從候選中選出今日 digest。
 
-    順序：先填 headline（全 pool 取最高分），再依 research / tools / opinion
-    各自的 pool 填滿；全程套單一來源上限（MAX_PER_SOURCE）。
+    先過三層去重（URL key、最近 N 天標題、今天 pool 內的相似標題），
+    再依 PICK_ORDER 填研究 / 工具 / 觀點，最後填頭條。
     回傳 (picked, pool)；某些分層候選不足時就少幾則，不硬湊。
     """
-    seen: set[str] = set()
+    seen_keys: set[str] = set()
     pool: list[Candidate] = []
+    kept_titles: list[str] = list(exclude_titles or [])
+
     for c in cands:
         if not matches_ai(c):
             continue
-        if c.dedup_id in exclude_keys:
+        if c.dedup_keys & exclude_keys:
             continue
-        if c.dedup_id in seen:
+        if c.dedup_keys & seen_keys:
             continue
-        seen.add(c.dedup_id)
+        if TITLE_DEDUP and is_title_duplicate(c.title, kept_titles):
+            continue
+
+        seen_keys.update(c.dedup_keys)
+        kept_titles.append(c.title)
         c.rank_score = rank_score(c, now)
         c.category = classify(c)
         pool.append(c)

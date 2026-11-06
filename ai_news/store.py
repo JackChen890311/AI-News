@@ -13,7 +13,8 @@ import threading
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from .models import Candidate, dedup_key
+from .dedup import title_key
+from .models import Candidate, url_keys
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS items (
@@ -46,6 +47,14 @@ CREATE TABLE IF NOT EXISTS seen (
     date TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_seen_date ON seen(date);
+
+-- 標題去重用的歷史標題。CI 每次都是全新的 DB，會從 digests/*.md 回填。
+CREATE TABLE IF NOT EXISTS seen_titles (
+    key   TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    date  TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_seen_titles_date ON seen_titles(date);
 """
 
 _CATEGORY_SQL_ORDER = (
@@ -100,12 +109,22 @@ class Store:
         for r in self.conn.execute(
             "SELECT dedup_id, url FROM items WHERE date >= ?", (cutoff,)
         ):
-            keys.add(r["dedup_id"])
+            if r["dedup_id"]:
+                keys.add(r["dedup_id"])
             if r["url"]:
-                keys.add(dedup_key(r["url"]))
+                keys.update(url_keys(r["url"]))
         for r in self.conn.execute("SELECT key FROM seen WHERE date >= ?", (cutoff,)):
             keys.add(r["key"])
         return keys
+
+    def recent_titles(self, days: int) -> list[str]:
+        """最近 N 天出現過的標題（用來做跨日標題去重）。"""
+        cutoff = (datetime.now() - timedelta(days=days)).date().isoformat()
+        cur = self.conn.execute(
+            "SELECT title FROM seen_titles WHERE date >= ? ORDER BY date DESC",
+            (cutoff,),
+        )
+        return [r["title"] for r in cur]
 
     def remember(self, key: str, date: str) -> None:
         """記住一個已用過的 URL；純去重用途，不影響今日快取。"""
@@ -122,7 +141,7 @@ class Store:
         少了這步就會每天重新選到同一批頭條。回填只寫 seen 表，
         所以不會讓今天的 digest 被誤判成「已有快取」。
         """
-        link_re = re.compile(r"^###\s+\d+\.\s+\[.*?\]\((\S+?)\)\s*$", re.M)
+        link_re = re.compile(r"^###\s+\d+\.\s+\[(.*?)\]\((\S+?)\)\s*$", re.M)
         added = 0
         for path in sorted(Path(digests_dir).glob("????-??-??.md")):
             date = path.stem
@@ -130,16 +149,29 @@ class Store:
                 text = path.read_text(encoding="utf-8")
             except OSError:
                 continue
-            for url in link_re.findall(text):
-                key = dedup_key(url)
-                if not key:
+            for title, url in link_re.findall(text):
+                keys = url_keys(url)
+                if not keys:
                     continue
                 with self._lock:
-                    cur = self.conn.execute(
-                        "INSERT OR IGNORE INTO seen (key, date) VALUES (?, ?)",
-                        (key, date),
-                    )
-                    added += cur.rowcount
+                    for key in keys:
+                        cur = self.conn.execute(
+                            "INSERT INTO seen (key, date) VALUES (?, ?) "
+                            "ON CONFLICT(key) DO UPDATE SET date = excluded.date "
+                            "WHERE excluded.date > seen.date",
+                            (key, date),
+                        )
+                        added += cur.rowcount
+                    normalized_title = title_key(title)
+                    if normalized_title:
+                        self.conn.execute(
+                            "INSERT INTO seen_titles (key, title, date) "
+                            "VALUES (?, ?, ?) "
+                            "ON CONFLICT(key) DO UPDATE SET "
+                            "title = excluded.title, date = excluded.date "
+                            "WHERE excluded.date > seen_titles.date",
+                            (normalized_title, title, date),
+                        )
             self.conn.commit()
         return added
 
@@ -173,6 +205,15 @@ class Store:
                     datetime.now().isoformat(timespec="seconds"),
                 ),
             )
+            normalized_title = title_key(c.title)
+            if normalized_title:
+                self.conn.execute(
+                    "INSERT INTO seen_titles (key, title, date) VALUES (?, ?, ?) "
+                    "ON CONFLICT(key) DO UPDATE SET "
+                    "title = excluded.title, date = excluded.date "
+                    "WHERE excluded.date >= seen_titles.date",
+                    (normalized_title, c.title, date),
+                )
             self.conn.commit()
 
     def search(self, query: str, limit: int = 30) -> list[dict]:
