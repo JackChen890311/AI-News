@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T10:34:13",
+  "generatedAt": "2026-11-06T10:52:58",
   "days": [
     {
       "date": "2026-11-06",
@@ -22,7 +22,8 @@
                 "comments": null,
                 "readingTime": null,
                 "hnUrl": null,
-                "summarized": false
+                "summarized": false,
+                "summaryMode": "blurb"
               },
               "category": "headline"
             },
@@ -60,7 +61,8 @@
                 "comments": null,
                 "readingTime": null,
                 "hnUrl": null,
-                "summarized": false
+                "summarized": false,
+                "summaryMode": "blurb"
               },
               "category": "headline"
             }
@@ -239,7 +241,8 @@
                 "comments": null,
                 "readingTime": null,
                 "hnUrl": null,
-                "summarized": false
+                "summarized": false,
+                "summaryMode": "blurb"
               },
               "category": "headline"
             }

@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS items (
     points       TEXT,
     why          TEXT,
     summarized   INTEGER DEFAULT 0,
+    summary_mode TEXT DEFAULT '',
     created_at   TEXT,
     PRIMARY KEY (date, category, rank)
 );
@@ -62,6 +63,12 @@ class Store:
         self.conn = sqlite3.connect(str(self.path), check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(_SCHEMA)
+        # 舊版 DB 沒有 summary_mode 欄位，補上（llm / extractive / blurb / none）。
+        cols = {r[1] for r in self.conn.execute("PRAGMA table_info(items)")}
+        if "summary_mode" not in cols:
+            self.conn.execute(
+                "ALTER TABLE items ADD COLUMN summary_mode TEXT DEFAULT ''"
+            )
         self.conn.commit()
 
     # ---- 今日快取 ----
@@ -149,19 +156,20 @@ class Store:
         why: str,
         reading_time: int,
         summarized: bool,
+        summary_mode: str = "",
     ) -> None:
         with self._lock:
             self.conn.execute(
                 """INSERT OR REPLACE INTO items
                    (date, category, rank, dedup_id, source_id, source_label, title, url,
                     hn_url, score, comments, reading_time, tldr, points, why,
-                    summarized, created_at)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    summarized, summary_mode, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     date, category, rank, c.dedup_id, c.source_id, c.source_label,
                     c.title, c.url, c.hn_url, c.score, c.comments, reading_time,
                     tldr, json.dumps(points, ensure_ascii=False), why,
-                    1 if summarized else 0,
+                    1 if summarized else 0, summary_mode,
                     datetime.now().isoformat(timespec="seconds"),
                 ),
             )

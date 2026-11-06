@@ -178,6 +178,17 @@ API_FALLBACK_MODELS = [
     if m.strip()
 ]
 
+# 要求 API 回傳 JSON 物件（Gemini / OpenAI 都支援）。端點若回 400 會自動關掉。
+JSON_MODE = os.environ.get("AI_NEWS_JSON_MODE", "1") != "0"
+# 同一個模型「回覆不是有效 JSON」時，降溫重試幾次後才換模型。
+JSON_RETRIES = int(os.environ.get("AI_NEWS_JSON_RETRIES", "2"))
+# 單篇輸出上限；摘要 JSON 很短，限制長度也避免模型長篇大論被截斷。
+# 推理型模型會把 thinking token 也算進去，留 2048 比較安全。
+MAX_OUTPUT_TOKENS = int(os.environ.get("AI_NEWS_MAX_TOKENS", "2048"))
+# 全域時間預算（秒）；0 = 不限。GitHub Actions 建議設 780（13 分鐘），
+# 留時間給抓取、build site 與 commit。
+TIME_BUDGET = int(os.environ.get("AI_NEWS_TIME_BUDGET", "0"))
+
 # ---------- launchd 排程 ----------
 
 SCHEDULE_LABEL = os.environ.get("AI_NEWS_LAUNCHD_LABEL", "com.ainews.digest")

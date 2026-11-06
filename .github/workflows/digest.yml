@@ -32,6 +32,12 @@ jobs:
       # 免費層被限流或該模型額度用完時，自動換這個模型重試。
       AI_NEWS_FALLBACK_MODELS: ${{ vars.AI_NEWS_FALLBACK_MODELS || 'gemini-3.5-flash-lite' }}
       AI_NEWS_API_RETRIES: "4"
+      AI_NEWS_API_RETRY_MAX: "20"
+      # 回覆格式不對時，同一個模型降溫重試的次數（之後才換模型）。
+      AI_NEWS_JSON_RETRIES: "2"
+      AI_NEWS_MAX_TOKENS: "2048"
+      # 全域時間預算：13 分鐘。job timeout 20 分鐘，留時間給抓取、build、commit。
+      AI_NEWS_TIME_BUDGET: "780"
       # 免費層對「每分鐘請求數」很敏感，平行 2 個比 4 個穩。
       AI_NEWS_CONCURRENCY: "2"
       AI_NEWS_SUMMARY_TIMEOUT: "60"
@@ -55,10 +61,19 @@ jobs:
             exit 0
           fi
 
-          if [ "$FORCE" = "true" ]; then
+          run_digest() {
+            if [ "$FORCE" = "true" ]; then
+              uv run python -m ai_news digest --force
+            else
+              uv run python -m ai_news digest
+            fi
+          }
+          # 整體流程失敗（例如 API 全部掛掉）時再試一次；個別摘要失敗
+          # 已經有擷取式保底，不會走到這裡。
+          if ! run_digest; then
+            echo "第一次產生失敗，30 秒後重試（--force）…"
+            sleep 30
             uv run python -m ai_news digest --force
-          else
-            uv run python -m ai_news digest
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 

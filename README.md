@@ -107,9 +107,17 @@ GitHub Pages 就跟著更新。
 CI 每次都是乾淨的 checkout，沒有本機的 `data/state.db`。專案會自動從已入版控的
 `digests/*.md` 回填跨日去重 key，所以雲端跑出來的選稿結果和本機一致，不會每天重複同一批頭條。
 
-免費層 API 偶爾會回 429（限流）或 503（過載）。摘要引擎會依 `Retry-After` 或指數退避自動重試，
-同一個模型重試多次仍失敗時，會換 `AI_NEWS_FALLBACK_MODELS` 裡的備援模型（不同的額度池）。
-認證錯誤（401/403）和各模型「每日額度用完」不會浪費時間重試，直接標記該篇「未摘要」或換模型。
+免費層 API 偶爾會回 429（限流）、503（過載），或回了空字串／被截斷的 JSON。
+摘要引擎分成三層處理：
+
+1. **傳輸層重試**：429/5xx/連線錯誤/空回應 → 依 `Retry-After` 或指數退避 + jitter 重試，
+   並有全域時間預算（`AI_NEWS_TIME_BUDGET`）避免把 GitHub Actions 拖到逾時。
+2. **格式重試 + 換模型**：回覆不是有效 JSON 時，先用 `temperature=0` 加嚴格的「只輸出 JSON」
+   指令重試同一個模型；仍失敗才換 `AI_NEWS_FALLBACK_MODELS`（不同額度池）。
+   端點若不支援 `response_format=json_object` 會自動退回提示詞約束，不會因此失敗。
+3. **擷取式保底**：真的全部失敗時，從文章正文擷取第一句與重點句，組成 TLDR 與 bullets。
+   **每則一定有可讀摘要**，只是會標註「⚠️ 擷取式摘要（LLM 失敗）」。
+
 workflow 預設把 `AI_NEWS_CONCURRENCY` 降到 2，減少撞到每分鐘限流的機會。
 
 ## CLI
@@ -156,6 +164,9 @@ git add digests data/news.json && git commit -m "Update daily digest"
 | `AI_NEWS_API_RETRIES` | `4` | API 暫時失敗（429/5xx/連線）時同模型重試次數 |
 | `AI_NEWS_API_RETRY_BASE` | `2.0` | 指數退避起始秒數（2→4→8…，含 jitter） |
 | `AI_NEWS_FALLBACK_MODELS` | — | 逗號分隔的備援模型；主模型額度用完或持續失敗時換手 |
+| `AI_NEWS_JSON_RETRIES` | `2` | 回覆不是 JSON 時，同模型降溫重試次數 |
+| `AI_NEWS_MAX_TOKENS` | `2048` | 單篇輸出上限（推理模型的 thinking token 也算在內） |
+| `AI_NEWS_TIME_BUDGET` | `0`（不限） | 全域重試時間預算（秒）；CI 建議 `780` |
 | `AI_NEWS_DEDUP_DAYS` | `14` | 跨日去重天數 |
 | `AI_NEWS_DIGEST_DIR` | `./digests` | 輸出目錄；可直接指到 Obsidian vault |
 | `AI_NEWS_OBSIDIAN` | — | 設 `1` 時 `ai-news open` 用 `obsidian://` 開啟 |
@@ -204,12 +215,13 @@ AI-News/
 │   ├── models.py        # Candidate 資料模型、URL 去重 key
 │   ├── fetch/           # HN 首頁 / Show HN / RSS / HF Daily Papers / Anthropic 官方 news / 正文抽取
 │   ├── rank.py          # 評分、分類（頭條/研究/工具/觀點）、選稿
-│   ├── summarize.py     # 摘要引擎（OpenCode CLI / OpenAI 相容 API）
+│   ├── summarize.py     # 摘要引擎（重試 / 換模型 / JSON 修復 / 擷取式保底）
 │   ├── store.py         # SQLite：今日快取 + 跨日去重 + 歷史搜尋
 │   ├── render.py        # Markdown 輸出 + index.md
 │   └── cli.py           # digest / open / show / search / install / uninstall
 ├── digests/             # 每日 Markdown 輸出（也是網站建置來源）
 ├── scripts/build.py     # digests/*.md → data/news.json
+├── tests/               # 摘要重試與保底測試（uv run pytest）
 ├── data/news.json       # 網站資料（建置產物，已入版控）
 ├── assets/              # 網站樣式與前端邏輯
 ├── index.html           # 靜態網站入口
@@ -220,7 +232,8 @@ AI-News/
 
 - 本機排程（launchd）需要電腦開著；想完全不開機就用上面的 GitHub Actions 雲端排程。
 - 有些站會擋爬蟲（paywall / 403），這時自動退回 RSS 簡介或 HN 留言，摘要品質會下降。
-- 免費模型的摘要偶爾格式跑掉；解析失敗會退回來源簡介並標註「未摘要」，跑 `--force` 可重試。
+- 免費模型的摘要偶爾格式跑掉；引擎會降溫重試、換模型，最後退回「擷取式摘要」（從原文抓重點句），
+  所以每則一定讀得到內容，但品質不如模型摘要。額度恢復後跑 `--force` 可重摘要。
 
 ## License
 

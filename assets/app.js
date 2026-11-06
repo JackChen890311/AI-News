@@ -94,7 +94,13 @@ function metaBadges(item) {
     out.push(`<a class="badge link" href="${escapeHtml(m.hnUrl)}" target="_blank" rel="noopener">HN 討論</a>`);
   }
   if (m.summarized === false) {
-    out.push(`<span class="badge warn">⚠️ 未摘要</span>`);
+    const label =
+      m.summaryMode === "extractive"
+        ? "⚠️ 擷取式摘要"
+        : m.summaryMode === "blurb"
+          ? "⚠️ 僅來源簡介"
+          : "⚠️ 未摘要";
+    out.push(`<span class="badge warn">${label}</span>`);
   }
   return out.join("");
 }

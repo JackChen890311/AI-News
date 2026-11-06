@@ -22,7 +22,13 @@ def _meta_line(it: dict) -> str:
     if it.get("hn_url"):
         parts.append(f"[HN 討論]({it['hn_url']})")
     if not it.get("summarized", True):
-        parts.append("⚠️ 未摘要（LLM 失敗，僅顯示來源簡介）")
+        mode = it.get("summary_mode") or ""
+        if mode == "extractive":
+            parts.append("⚠️ 擷取式摘要（LLM 失敗，取自原文重點）")
+        elif mode == "blurb":
+            parts.append("⚠️ 僅來源簡介（LLM 失敗）")
+        else:
+            parts.append("⚠️ 未摘要（LLM 失敗）")
     return " · ".join(str(p) for p in parts)
 
 

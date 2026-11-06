@@ -47,7 +47,7 @@ from .models import Candidate
 from .rank import pick
 from .render import digest_path, render_markdown, write_index
 from .store import Store
-from .summarize import Summary, reading_time, summarize_article
+from .summarize import extractive_summary, reading_time, summarize_article
 
 
 def _log(msg: str) -> None:
@@ -76,12 +76,14 @@ def _process_one(
     rt = reading_time(text) if text else 0
 
     if no_summarize:
-        summary = Summary(ok=False, tldr=(c.blurb or "")[:200])
+        summary = extractive_summary(c.title, "", c.blurb)
     elif pdf_url:
-        # PDF 沒法抽正文，用 blurb 佔位
-        summary = Summary(ok=bool(c.blurb), tldr=(c.blurb or "")[:200] or f"[PDF] {c.url}")
+        # PDF 沒法抽正文，用簡介佔位
+        summary = extractive_summary(c.title, "", c.blurb)
+        if not summary.tldr:
+            summary.tldr = f"[PDF] {c.url}"
     elif not text:
-        summary = Summary(ok=bool(c.blurb), tldr=(c.blurb or "")[:200])
+        summary = extractive_summary(c.title, "", c.blurb)
         if not summary.tldr:
             _log(f"  ⏭️  [{c.source_label}] 抓不到內容也沒有簡介，跳過：{c.title[:50]}")
             return None
@@ -90,14 +92,21 @@ def _process_one(
         summarized = summary.ok
         if not summarized:
             reason = (summary.raw or "").strip().replace("\n", " ")[:140]
-            summary.tldr = summary.tldr or (c.blurb or "")[:200]
-            _log(f"  ⚠️  [{c.source_label}] 摘要失敗（{reason or '回覆格式解析失敗'}）；用簡介墊：{c.title[:40]}")
+            # 保底：LLM 失敗就用原文擷取，保證每則都有可讀摘要。
+            fallback = extractive_summary(c.title, text, c.blurb)
+            fallback.raw = summary.raw
+            summary = fallback
+            _log(
+                f"  ⚠️  [{c.source_label}] LLM 摘要失敗（{reason or '回覆格式解析失敗'}）；"
+                f"改用擷取式摘要：{c.title[:40]}"
+            )
         else:
             _log(f"  ✅ [{c.source_label}] {c.title[:60]}")
 
+    summary_mode = summary.mode or ("llm" if summarized else "")
     store.save_item(
         date, category, rank, c, summary.tldr, summary.points, summary.why,
-        rt if summarized else 0, summarized,
+        rt, summarized, summary_mode,
     )
     return {
         "category": category,
@@ -111,9 +120,10 @@ def _process_one(
         "why": summary.why,
         "score": c.score,
         "comments": c.comments,
-        "reading_time": rt if summarized else 0,
+        "reading_time": rt,
         "hn_url": c.hn_url,
         "summarized": summarized,
+        "summary_mode": summary_mode,
     }
 
 
@@ -144,7 +154,13 @@ def _print_digest(items: list[dict], date: str, cached: bool) -> None:
         if it.get("reading_time"):
             meta.append(f"📖 {it['reading_time']} 分鐘")
         if not it.get("summarized", True):
-            meta.append("⚠️ 未摘要")
+            mode = it.get("summary_mode") or ""
+            if mode == "extractive":
+                meta.append("⚠️ 擷取式摘要")
+            elif mode == "blurb":
+                meta.append("⚠️ 僅來源簡介")
+            else:
+                meta.append("⚠️ 未摘要")
         if meta:
             console.print(f"     [dim]{' · '.join(meta)}[/dim]")
 
@@ -172,6 +188,9 @@ def cmd_digest(args) -> int:
             except json.JSONDecodeError:
                 it["points"] = []
             it["summarized"] = bool(it.get("summarized"))
+            it["summary_mode"] = it.get("summary_mode") or (
+                "llm" if it["summarized"] else ""
+            )
         cached = True
         _log(f"✅ {date} 已有 {len(items)} 則快取（--force 可重抓）")
     else:
@@ -232,7 +251,7 @@ def cmd_digest(args) -> int:
         print(f"\n✅ 已寫入 {path}")
 
     if not cached and any(not it.get("summarized") for it in items):
-        _log("（有些則未成功摘要，跑 --force 可重試）")
+        _log("（有幾則用了擷取式摘要；LLM 額度恢復後跑 --force 可重摘要）")
     return 0
 
 

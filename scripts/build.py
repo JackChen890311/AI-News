@@ -67,6 +67,12 @@ def parse_meta_line(line: str) -> dict:
                 meta["hnUrl"] = mm.group(1).strip()
         elif "⚠️" in token:
             meta["summarized"] = False
+            if "擷取式" in token:
+                meta["summaryMode"] = "extractive"
+            elif "來源簡介" in token:
+                meta["summaryMode"] = "blurb"
+            else:
+                meta["summaryMode"] = ""
     return meta
 
 
