@@ -1,6 +1,202 @@
 {
-  "generatedAt": "2026-11-06T11:33:36",
+  "generatedAt": "2026-11-07T01:35:31",
   "days": [
+    {
+      "date": "2026-11-07",
+      "title": "🗞️ AI 每日摘要 · 2026-11-07",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Gemini Omni 1.2 Flash",
+              "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+              "tldr": "Google 正式推出 Gemini Omni 1.2 Flash，支援原生 15 秒影片生成、多輪對話式編輯與更佳的參考一致性，且價格大幅降低 30%。",
+              "points": [
+                "價格降低 30% 至 720p 影片每秒 0.07 美元，原生影片生成長度延長至 15 秒。",
+                "新增多輪對話式編輯功能，可逐步替換背景或燈光，無需重頭生成整個片段。",
+                "顯著提升人物、產品細節與語音嘴型的視覺一致性，並在 Gemini API 與 Google Cloud 全面開放（GA）。"
+              ],
+              "why": "這項更新大幅降低了 AI 影片製作的成本與技術門檻，並透過對話式編輯與高度一致性，讓企業與創作者能更高效地大規模生成專業影音內容。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 201,
+                "comments": 156,
+                "readingTime": 4,
+                "hnUrl": "https://news.ycombinator.com/item?id=50392118",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "After the midterms, is the AI industry in for a rough two years?",
+              "url": "https://techcrunch.com/video/after-the-midterms-is-the-ai-industry-in-for-a-rough-two-years/",
+              "tldr": "美國期中選舉後，民主黨的勝利與選民公投結果預示著未來針對資料中心及 Big Tech 的政府監管將大幅加強。",
+              "points": [
+                "在 41 項與資料中心相關的公投案中，有 40 項投票通過對資料中心開發實施更多限制。",
+                "新當選的民主黨州長與國會議員預計將支持更多針對科技產業的監管法規。",
+                "TechCrunch 的 Equity 播客討論了選舉對 Big Tech 的政府審查，以及 OpenAI 試圖重新定位資料中心等影響。"
+              ],
+              "why": "選民與新任政府官員對資料中心及 Big Tech 展現出更嚴格的監管傾向，可能使 AI 產業未來的擴展與發展面臨重重挑戰。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "Ramp data shows AI spending stalling just as Anthropic nears its IPO",
+              "url": "https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/",
+              "tldr": "Ramp 數據顯示，儘管 AI 使用量上升，但受價格戰與企業成本控制影響，AI 支出增長明顯放緩，影響 Anthropic 等巨頭的估值與營收前景。",
+              "points": [
+                "Ramp 報告指出 8 至 9 月 AI Token 支出僅增長 1.5%，顯示 AI 支出的高速增長時期可能已告一段落。",
+                "支出放緩主要源於 OpenAI 與 Anthropic 的價格戰降價，以及企業客戶學會使用預算控制與更便宜的模型。",
+                "資本市場已受影響，Anthropic 的估值預估從 2 萬億美元降至 1.2 至 1.3 萬億美元，OpenAI 也下修了估值與籌資目標。"
+              ],
+              "why": "這揭示了 AI 模型公司面臨用量增加卻無法提升利潤的商業瓶頸，將直接影響 Anthropic 的 IPO 表現與投資人對 AI 產業的高估算邏輯。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 5,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Decoupled Predictive Decision Making: A Shared Conditional Predictor for Agents",
+              "url": "https://huggingface.co/papers/2611.02075",
+              "tldr": "新架構 Decoupled Predictive Decision Making (DPDM) 結合凍結的 LLM 與共用預訓練條件預測器，在不更新參數下顯著提升 Agent 決策準確率。",
+              "points": [
+                "分離語意表示與經驗推理，結合語言預訓練的語意知識與結構化資料預訓練的經驗推理。",
+                "在 50 個基準測試中，搭配 Qwen3.5-27B 平均準確率從 78.80% 提升至 84.92%。",
+                "在 ToolPRMBench 的 BFCL 與 ToolSandbox 任務中，絕對準確率分別大幅提升 34.26% 與 28.87%。"
+              ],
+              "why": "這項研究讓 AI agent 能透過共用預訓練預測器從實際部署經驗中學習，無需更新模型參數即可跨任務提升決策能力。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 113,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding",
+              "url": "https://huggingface.co/papers/2611.08449",
+              "tldr": "VFlash 是一種全新的視覺規劃方法，透過 Flash Primitive Decoding 同時預測座標，大幅提升運算速度與空間準確度。",
+              "points": [
+                "利用輕量級草稿器（drafter）在單一前向傳遞中生成完整的視覺原語（primitive）。",
+                "支援多種空間目標，包含緊湊的邊界框與長度可變的軌跡。",
+                "在 2D 與 3D 機器人軌跡任務中，預測速度較傳統自迴歸解碼快約 25 倍，且能有效降低誤差。"
+              ],
+              "why": "這項技術解決了現有自迴歸視覺語言模型在生成空間規劃時成本高昂且緩慢的問題，對機器人與自動駕駛等實體 AI 領域的發展具有重大突破。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 78,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: Agentic Identity Broker, OAuth Delegation for AI Agents",
+              "url": "https://github.com/zalando-incubator/agentic-identity-broker",
+              "tldr": "Zalando Engineering 推出的 Agentic Identity Broker 是一個專為 Agentic AI 設計的身分代理與 OAuth 委託工具，能簡化 MCP 伺服器開發並提供安全的集中式權限控管。",
+              "points": [
+                "透過閘道器部署管理 on-behalf-of 流程，減輕 AI agent 與 MCP 伺服器開發者的驗證負擔",
+                "提供集中式 OAuth2 委託、權限範圍管理及安全的 Token Vault，支援 Google、GitHub 等服務",
+                "具備命令注入防範、敏感資訊遮罩與完整的結構化 JSON 稽核日誌等安全設計"
+              ],
+              "why": "它解決了 AI Agents 與多個 MCP 伺服器互動時繁瑣的 OAuth2 認證與授權管理難題，提升安全性與開發效率。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 11,
+                "comments": 3,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50393235",
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: Inference business simulator – don't go broke, rent GPUs, serve tokens",
+              "url": "https://makermaker.ai/breakthroughs/inference/simulation/",
+              "tldr": "Show HN: Inference business simulator – don't go broke, rent GPUs, serve tokens",
+              "points": [],
+              "why": null,
+              "meta": {
+                "source": "HN Show",
+                "score": 10,
+                "comments": 2,
+                "readingTime": null,
+                "hnUrl": "https://news.ycombinator.com/item?id=50385087",
+                "summarized": false,
+                "summaryMode": ""
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Controlling Biology - Fabian Theis, Helmholtz Munich",
+              "url": "https://latent.space/p/controlling-biology-fabian-theis-helmholtz-munich/",
+              "tldr": "本文探討了由 Fabian Theis 領導的 Virtual Cell 概念與規模高達 18 億美元的 Biohub 計畫，如何透過多尺度生物數據與 AI 來突破傳統系統生物學的瓶頸。",
+              "points": [
+                "Fabian Theis 長期帶領團隊推動多尺度、多模態生物數據的演算法研究。",
+                "Biohub 結合 NIH、Google 與 Meta 等機構投入 18 億美元，推動大規模數據收集與 lab-in-the-loop 自動化。",
+                "儘管過去 Virtual Cell 面臨干擾預測模型表現不佳的挑戰，但新型高精度數據與改進的評估指標正為 AI 賦能精準醫療帶來新契機。"
+              ],
+              "why": "這則新聞揭示了產官學界如何透過 18 億美元巨資與 AI 技術，試圖解決生物學中跨尺度介面的數據與建模難題，對未來精準醫療發展具有關鍵影響。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 4,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-06",
       "title": "🗞️ AI 每日摘要 · 2026-11-06",
