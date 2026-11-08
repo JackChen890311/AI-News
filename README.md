@@ -100,9 +100,9 @@ uv run python -m ai_news uninstall      # 移除
 
 ### 雲端排程（GitHub Actions，不用開電腦）
 
-[`.github/workflows/digest.yml`](.github/workflows/digest.yml) 每天 08:30（台北時間）自動跑，
+[`.github/workflows/digest.yml`](.github/workflows/digest.yml) 每天 06:25, 18:25（台北時間）自動跑，
 用 Gemini 的 OpenAI 相容端點做摘要，跑完把 `digests/` 與 `data/news.json` commit 回 repo，
-GitHub Pages 就跟著更新。
+GitHub Pages 就跟著更新，若已有內容則會跳過。
 
 一次性設定：
 
