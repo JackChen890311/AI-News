@@ -1,6 +1,202 @@
 {
-  "generatedAt": "2026-11-09T00:44:13",
+  "generatedAt": "2026-11-10T04:52:32",
   "days": [
+    {
+      "date": "2026-11-10",
+      "title": "🗞️ AI 每日摘要 · 2026-11-10",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Claude Fable 5.2 and Mythos 5.2",
+              "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+              "tldr": "Anthropic 推出了升級版的 Claude Fable 5.2 與 Claude Mythos 5.2 模型，在程式碼編寫、推理、視覺及科學研究等領域展現出強大的效能與效率。",
+              "points": [
+                "Claude Fable 5.2 與 Mythos 5.2 提供更快的輸出速度、更低的價格，並具備可選的 fast mode 加速功能。",
+                "模型在代理式編寫、網路安全、蛋白質設計及物理學等領域的基準測試中表現優異。",
+                "Fable 5.2 成功在 30 小時內完成費馬最後定理的數學形式化證明，展現高度自主性。"
+              ],
+              "why": "這款新模型大幅提升了處理複雜技術挑戰與科學研究的能力，並降低了使用成本，對 AI 開發與應用具有重大影響。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 599,
+                "comments": 304,
+                "readingTime": 9,
+                "hnUrl": "https://news.ycombinator.com/item?id=50429906",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "ChatGPT Enterprise now available in AWS Marketplace",
+              "url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+              "tldr": "ChatGPT Enterprise is now available through AWS Marketplace, helping organizations simplify procurement through existing AWS purchasing and billing relationships.",
+              "points": [],
+              "why": null,
+              "meta": {
+                "source": "OpenAI",
+                "score": null,
+                "comments": null,
+                "readingTime": null,
+                "hnUrl": null,
+                "summarized": false,
+                "summaryMode": "extractive"
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "Jensen Huang pulls out of ElevenLabs Summit amid Nvidia controversy",
+              "url": "https://techcrunch.com/2026/11/09/jensen-huang-pulls-out-of-elevenlabs-summit-amid-nvidia-controversy/",
+              "tldr": "Nvidia CEO Jensen Huang 因坦承婚外情並面臨中國間諜疑雲調查，已退出 ElevenLabs Summit 等多場公開演講。",
+              "points": [
+                "Nvidia CEO Jensen Huang 證實退出原定本週三在紐約舉行的 ElevenLabs Summit 與 Anthropic CEO Forum。",
+                "Huang 發信坦承婚外情並向家人與公司道歉，Nvidia 也正對他與一名疑似中國間諜的關係展開調查。",
+                "這起事件震動了 AI 業界，引發外界對 Huang 的執行長職位穩定性及 Nvidia 中國佈局的質疑。"
+              ],
+              "why": "這則新聞事關全球 AI 領頭羊 Nvidia 執行長的個人醜聞與國安調查，對整個科技產業和公司未來發展投下震撼彈。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "SplatAnything: Gaussian Spacing Normalization for Feed-forward 3DGS across Arbitrary Scenes",
+              "url": "https://huggingface.co/papers/2611.08264",
+              "tldr": "SplatAnything 透過引入 Gaussian Spacing Normalization (GSNorm)，解決了現有前向 3DGS 在不同場景規模與視角下高斯間距不一致的問題，實現了更穩定且最先進的 3D 重建效能。",
+              "points": [
+                "提出 GSNorm 技術，將場景級別的高斯間距標準化，解決傳統方法中尺度與視角變異導致的監督訊號模糊問題。",
+                "建立跨越多元資料集、輸入稀疏度及極端外推視角的系統化評估基準，證實其在大幅度變異下具備卓越表現。",
+                "作為 InfiniSplat 系列的第三代模型，支援從日常物件、全景到自動駕駛等多種應用的 3D 關聯重建。"
+              ],
+              "why": "這項技術克服了前向 3D 混疊高斯重建 (3DGS) 在應對複雜場景與不同尺度時的不穩定性，對自動駕駛、AR/VR 與機器人導航等領域的 3D 視覺發展具有重要推動價值。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 60,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "P^2-MOPD: Accelerating Multi-Teacher On-Policy Distillation via Parameter Priors",
+              "url": "https://huggingface.co/papers/2611.03953",
+              "tldr": "新提出的 P^2-MOPD 方法透過將專家權重作為參數先驗，結合混合係數與學生權重的共同優化，實現更快且更均衡的多教師線上蒸餾。",
+              "points": [
+                "P^2-MOPD 同時優化混合係數與學生權重，讓專家扮演參數先驗而非限制學生範圍。",
+                "在 1.7B 與 4B 模型規模的四個領域中，以一半的訓練步數超越 MOPD 的最終平均恢復率。",
+                "顯著改善跨領域表現不均，大幅提升最弱領域的恢復率並降低標準差。"
+              ],
+              "why": "這項技術克服了傳統多教師線上蒸餾的領域落後與可達性問題，在不增加推理成本的前提下大幅提升模型效能與訓練效率。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 42,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: STE80 Humanizer – de-AI text by writing 80% of the way to ASD-STE100",
+              "url": "https://github.com/Dodaios/ste80-humanizer",
+              "tldr": "STE80 Humanizer 是一個結合 AI 移除常見特徵與 ASD-STE100 航空維修控管英文的工具，能將 AI 文字重寫得像真人般自然易讀。",
+              "points": [
+                "移除維基百科歸納的 26 種 AI 書寫特徵",
+                "套用 Karpathy 的 STE80 方法重組句子以提升可讀性",
+                "提供 80% 預設、Light 與 Strict STE 三種模式供使用者選擇"
+              ],
+              "why": "隨著 LLM 普及，清晰的輸出成為瓶頸，此工具能有效解決 AI 文字過度冗長與不自然的問題，提升閱讀與理解效率。",
+              "meta": {
+                "source": "HN Show",
+                "score": 11,
+                "comments": 1,
+                "readingTime": 10,
+                "hnUrl": "https://news.ycombinator.com/item?id=50429144",
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: Traccia – open-sourced AI agent runtime governance",
+              "url": "https://github.com/traccia-ai/traccia-py",
+              "tldr": "Traccia 是一個用於 AI 代理和 LLM 應用程式的生產級 Python SDK，提供分散式追蹤、成本追蹤、提示詞管理、離線評估及運行時政策治理。",
+              "points": [
+                "支援 OpenAI、Anthropic、Gemini、Groq 以及 LangChain、CrewAI、OpenAI Agents SDK 等主流框架的自動埋點與整合。",
+                "提供運行時政策控制（如支出上限、模型邊界）與被動式安全護欄檢測，確保 AI 應用合規安全。",
+                "內建提示詞管理與離線評估功能，並支援透過 CLI 進行 CI 效能與品質門檻閘道驗證。"
+              ],
+              "why": "它解決了生產環境中 AI 代理行為難以觀察、控制與評估的痛點，幫助開發者確保 AI 應用的安全性、成本效益與合規性。",
+              "meta": {
+                "source": "HN Show",
+                "score": 5,
+                "comments": 0,
+                "readingTime": 7,
+                "hnUrl": "https://news.ycombinator.com/item?id=50428375",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "The future of AI hinges on… Jensen Huang’s sex life?",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1029990/jensen-huang-the-spy-who-loved-me",
+              "tldr": "Nvidia CEO Jensen Huang 捲入與中國間諜嫌疑人 Alice Huang 的醜聞並承認不忠，引發公司內部調查與對 AI 供應鏈安全和晶片出口管制的擔憂。",
+              "points": [
+                "Nvidia CEO Jensen Huang 被爆與涉嫌為中國國安部情報人員的 Alice Huang 有染，引發國家安全疑慮。",
+                "Megaspeed 大舉購入被禁的 Nvidia 晶片並在東南亞建立資料中心，其背後動機與與中國軍方的關係受到檢視。",
+                "Jensen Huang 已向員工坦承不忠並面臨 Nvidia 的內部調查，這可能對依賴 Nvidia 支撐的整個 AI 生態系造成衝擊。"
+              ],
+              "why": "Nvidia 作為全球 AI 生態系的核心，其 CEO 捲入間諜與不忠醜聞不僅威脅公司領導權，也可能動搖美國的 AI 產業鏈與國家安全。",
+              "meta": {
+                "source": "The Verge",
+                "score": null,
+                "comments": null,
+                "readingTime": 6,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-09",
       "title": "🗞️ AI 每日摘要 · 2026-11-09",
