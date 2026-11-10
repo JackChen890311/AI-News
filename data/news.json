@@ -1,6 +1,204 @@
 {
-  "generatedAt": "2026-11-10T04:52:32",
+  "generatedAt": "2026-11-11T02:00:01",
   "days": [
+    {
+      "date": "2026-11-11",
+      "title": "🗞️ AI 每日摘要 · 2026-11-11",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Gemini 4 Carbon is now available",
+              "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+              "tldr": "Google 正式推出最新 AI 模型 Gemini 4 Carbon，專為網路安全、複雜代理程式編寫與前沿科學研究等高階推理任務設計，現已全面開放使用。",
+              "points": [
+                "在 CursorBench 4.0 等多項實用工作流程基準測試中名列第一，且任務成本顯著低於競爭對手。",
+                "具備強大的網路安全能力，可自動檢測漏洞、追蹤潛在威脅並生成經驗證的修補程式。",
+                "顯著提升科學與數學推理，已應用於新藥毒性研究、蛋白質結構預測與 Signal 加密協定的程式碼驗證。"
+              ],
+              "why": "Gemini 4 Carbon 突破了 AI 在極限推理與 Agentic 工作流程上的前沿標準，能大幅加速軟體工程、網路資安防禦與科學探索的進展。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 208,
+                "comments": 103,
+                "readingTime": 8,
+                "hnUrl": "https://news.ycombinator.com/item?id=50442303",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at depth",
+              "url": "https://deepmind.google/blog/introducing-alphaproof-code/",
+              "tldr": "Google DeepMind 推出 AlphaProof Code 框架，成功利用 AI 代理對 Signal 加密協定進行深度形式化驗證。",
+              "points": [
+                "結合人類專家與 AI 代理，使用 AlphaProof Code 框架進行形式化驗證。",
+                "產生超過六百萬行 Lean 程式碼，證明實際執行的程式碼具備關鍵安全性。",
+                "將原本需耗費數年的驗證過程縮短至僅需四週完成。"
+              ],
+              "why": "這是首次利用 AI 對廣泛部署的實際加密協定進行深度形式化驗證，為軟體安全性帶來重大突破。",
+              "meta": {
+                "source": "Google DeepMind",
+                "score": null,
+                "comments": null,
+                "readingTime": 4,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "Helping caregivers use AI in everyday life",
+              "url": "https://openai.com/index/helping-caregivers-use-ai-in-everyday-life",
+              "tldr": "OpenAI Academy is bringing free, hands-on ChatGPT workshops to caregivers in five U.",
+              "points": [
+                "cities, helping them build practical AI skills for everyday life."
+              ],
+              "why": null,
+              "meta": {
+                "source": "OpenAI",
+                "score": null,
+                "comments": null,
+                "readingTime": null,
+                "hnUrl": null,
+                "summarized": false,
+                "summaryMode": "extractive"
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Learning Heterogeneous Tactile Representation for General Dexterous Manipulation",
+              "url": "https://huggingface.co/papers/2611.12806",
+              "tldr": "LingBot-Touch 是一個能跨越不同異質觸覺感測器的觸覺基礎模型，提供隨插即用的觸覺 token 以增強機器人靈巧操作能力。",
+              "points": [
+                "提出 LingBot-Touch 觸覺基礎模型，實現跨異質觸覺感測器的統一與可擴展表示",
+                "產生的觸覺 token 具備隨插即用特性，可無縫整合至 diffusion policy 與 VLA 模型中",
+                "透過模擬與真實機器人實驗，證明其能顯著提升複雜操作任務的表現並維持高效運算"
+              ],
+              "why": "它解決了機器人觸覺理解受限於特定感測器物理特性的關鍵難題，為具身智能的發展提供跨感測器擴展觸覺學習的重要途徑。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 92,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "Sage-Taiyi: A Metacognitive Architecture for Scientific Discovery",
+              "url": "https://huggingface.co/papers/2611.12762",
+              "tldr": "研究團隊推出以後設認知為靈感的 AI 架構 Sage-Taiyi，能利用累積的科學理解來引導後續研究並完成實驗驗證。",
+              "points": [
+                "Sage-Taiyi 透過顯式監控與控制機制修正對證據與假設的理解，藉此調整研究目標並選擇可重複使用的推理方法。",
+                "在涵蓋 10 個學科的 Taiyi-Bench 基準測試中，Sage-Taiyi 在所有 8 項指標上均名列第一，整體得分 54.0 優於 AI Scientist-v2。",
+                "在化學實體驗證中，成功將鈷催化羰基化反應產率提升至 84%，並將光催化烯丙基胺化反應產率從 13% 提高至 69%。"
+              ],
+              "why": "這項研究證明了後設認知調節可作為科學發想的有效方法，並成功推動 AI 提議走向化學與工程等實體實驗的具體驗證。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 47,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Cyberattacks threaten to make open source AI a little less open, Hugging Face exec warns",
+              "url": "https://techcrunch.com/2026/11/10/cyberattacks-threaten-to-make-open-source-ai-a-little-less-open-hugging-face-exec-warns/",
+              "tldr": "Hugging Face 高管警告，開源 AI 平台的開放特性與豐富數據正吸引更多網路攻擊，恐迫使平台增加限制並削弱開源社群的開放性。",
+              "points": [
+                "Hugging Face、OpenCode 與 Fireworks 等平台近期相繼遭襲，凸顯開源 AI 基礎設施面臨的金鑰與數據安全風險。",
+                "若平台因安全性考量實施嚴格的身分驗證與權限限制，將可能提高獨立研究者與愛好者的參與門檻。",
+                "Hugging Face 與 GitHub 嘗試透過頻繁輪換金鑰、加強網路控制與監控異常行為，在不打壓開放性的前提下強化防護。"
+              ],
+              "why": "這凸顯了開源 AI 生態系在維護網路安全與保持社群開放自由之間的兩難，深遠影響未來 AI 技術的創新與大眾參與度。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: Cosh – An open-source AI agent orchestrator",
+              "url": "https://github.com/DiegoZaluski/co-sh",
+              "tldr": "Cosh 是一款開源的終端機通用 AI 程式碼代理，支援多代理協作、圖形介面互動與 Rust 打造的 TUI 介面。",
+              "points": [
+                "具備 Multi-agent mode，可讓主代理協調多個外部代理如 Gemini、Claude 等共同執行任務。",
+                "透過無障礙樹狀結構操作圖形介面，減少影像處理與 Token 消耗。",
+                "使用 Rust 以 Ratatui 從零打造 TUI，提供近乎零手動設定的使用體驗。"
+              ],
+              "why": "它提供了一種開源且高效的終端機 AI 代理編排工具，能透過多代理協作與優化的介面互動提升軟體工程效率。",
+              "meta": {
+                "source": "HN Show",
+                "score": 5,
+                "comments": 2,
+                "readingTime": 2,
+                "hnUrl": "https://news.ycombinator.com/item?id=50439141",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "[AINews] Fable 5.2 retakes World #1 LLM spot as $ANT IPO roadshow begins",
+              "url": "https://latent.space/p/ainews-fable-5-2-retakes-world-1-llm-spot-as-ant-ipo-roadshow-begins/",
+              "tldr": "Anthropic 推出全新 Claude Fable 5.2 與 Mythos 5.2 模型，在多項獨立評測中奪回全球第一，並伴隨價格調降與全新的思考努力設定。",
+              "points": [
+                "Fable 5.2 的單價較 5.1 版本調降 20%，但由於會執行大量獨立檢查與子代理程式，實際每項任務的平均成本反而上升。",
+                "該模型在多項獨立基準測試（如 Artificial Analysis、Epoch、ARC-AGI）中奪下世界第一。",
+                "訂閱用戶在使用 Fable 5.2 時會受到額度與資料保留的限制，且社群發現最高等級的 Max 努力設定有時表現反而不及 High 設定。"
+              ],
+              "why": "這款新模型的推出不僅重新定義了 AI 效能的頂峰，也正值 Anthropic 啟動 IPO 路演的關鍵時刻，對整個產業與資本市場具備重大影響。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 9,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-10",
       "title": "🗞️ AI 每日摘要 · 2026-11-10",
