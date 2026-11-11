@@ -1,6 +1,203 @@
 {
-  "generatedAt": "2026-11-11T02:00:01",
+  "generatedAt": "2026-11-12T01:58:34",
   "days": [
+    {
+      "date": "2026-11-12",
+      "title": "🗞️ AI 每日摘要 · 2026-11-12",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Google SWE points 48 AI agents at NASA Lidar, finds unmapped Maya pyramid in 72h",
+              "url": "https://pietromiotti.com/latest/maya-site/?maya",
+              "tldr": "一名 Google 工程師運用 48 個 AI agent 分析 NASA 的 Lidar 數據，在 72 小時內重新發現了尚未登錄於墨西哥官方名冊的瑪雅遺址。",
+              "points": [
+                "作者利用 Gemini、ChatGPT、Claude 與 Grok 等模型協同指揮 48 個 AI agent，掃描約 1,200 平方公里的 Lidar 影像以尋找建築結構。",
+                "AI agent 成功識別出金字塔與廣場等構造，並自動協助撰寫西班牙文報告向墨西哥官方機構 INAH 進行確認。",
+                "雖然該遺址隨後證實已在部分文獻被提及，但 AI 在短時間內完成篩選與文獻比對，驗證了 Agentic AI 在科學探索上的潛力。"
+              ],
+              "why": "這顯示 AI agent 的應用已超越寫程式與數學領域，能幫助非專家以極高效率進行跨領域科學研究與探索。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 752,
+                "comments": 282,
+                "readingTime": 5,
+                "hnUrl": "https://news.ycombinator.com/item?id=50452455",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Gilbert + Tobin rethinks the business of law with AI",
+              "url": "https://openai.com/index/gilbert-tobin-sam-nickless",
+              "tldr": "A conversation with Sam Nickless, Partner and Chief Executive Officer at Gilbert + Tobin.",
+              "points": [],
+              "why": null,
+              "meta": {
+                "source": "OpenAI",
+                "score": null,
+                "comments": null,
+                "readingTime": null,
+                "hnUrl": null,
+                "summarized": false,
+                "summaryMode": "extractive"
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "Apple has new Mac app coming to make running local AI models easy",
+              "url": "https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/",
+              "tldr": "爆料顯示 Apple 正在開發名為 Harbor 的全新 Mac 應用程式，能將 Mac 輕鬆轉化為本地端的私有 AI 推理伺服器。",
+              "points": [
+                "爆料者 Aaron Perris 發現 Apple 正在開發名為 Harbor 的 Mac 應用程式，主打本地端 AI 模型運行。",
+                "支援透過 Thunderbolt 5 串聯多台 Mac 以共享統一記憶體（Unified Memory），從而執行更大規模的模型。",
+                "使用者可直接在 App 內瀏覽、下載並管理開放權重（open-weight）模型，無需複雜的命令列設定。",
+                "Harbor 目前於 Apple 旗下的 Claris 品牌進行私人預覽，預計在未來幾個月內公開推出。"
+              ],
+              "why": "此工具能大幅降低使用者在本地端部署與運行大型 AI 模型的門檻，同時確保資料不外洩至雲端。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 466,
+                "comments": 481,
+                "readingTime": 2,
+                "hnUrl": "https://news.ycombinator.com/item?id=50446520",
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Tree-Ising: Repairing Language Models with Bit-Level Ising Edits",
+              "url": "https://huggingface.co/papers/2611.14210",
+              "tldr": "Tree-Ising 透過將大語言模型權重修復轉化為離散最佳化問題，在無需梯度或 LLM 代價下超越了現有 agent 的權重修復效果。",
+              "points": [
+                "Tree-Ising 將 BF16 參數的權重修復建模為稀疏 Ising/QUBO 問題，無需梯度或 LLM-token 成本。",
+                "在 Qwen3.5-0.8B 的 MATH-500 測試中，Tree-Ising 達到 54.6% 準確率，超越 MIT agent 的 51.7%，且修改更少權重。",
+                "該方法大幅降低運算成本，僅需 4 次前向傳播請求與約 0.90 美元的 GPU 時間，並能顯著提升 Qwen3.5-2B 在 GSM8K 上的表現。"
+              ],
+              "why": "這項技術展示了不需透過龐大 LLM 代理或梯度就能精準修復大模型權重的新途徑，大幅降低了模型微調與修復的成本與資源。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 66,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "Don't Just Trust Your Memory: Evidence-Linked Memory Reduces Memory-Induced Degradation in LLM Agents",
+              "url": "https://huggingface.co/papers/2611.14320",
+              "tldr": "研究指出 LLM agents 使用外部記憶時常因錯誤或誤讀經驗而導致效能退化，因此團隊推出 WikiTrace 系統，將經驗教訓連結至原始軌跡與證據，讓 agents 在行動前能先驗證與修正記憶。",
+              "points": [
+                "外部記憶雖然能幫助 LLM agents 從經驗中學習，但也可能因為錯誤或誤讀的經驗而導致效能退化。",
+                "WikiTrace 採用證據連結記憶系統，將每項教訓與原始執行軌跡及成敗診斷進行連結。",
+                "實驗顯示 WikiTrace 在五個 agentic benchmarks 的表現持續優於現有記憶方法，能有效減少記憶引起的效能退化。"
+              ],
+              "why": "這項研究解決了 LLM agents 在使用外部記憶時容易因錯誤資訊導致效能下降的痛點，透過證據連結機制提升了 AI 代理的推理與決策可靠性。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 50,
+                "comments": null,
+                "readingTime": 5,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: Aq – an attention queue TUI for Claude Code",
+              "url": "https://github.com/nodo-labs-uk/attention-queue",
+              "tldr": "Aq 是一款專為 Claude Code 開發的終端機工具，能將多個 AI 對話階段的審查、提問與權限請求統整進單一佇列中集中處理。",
+              "points": [
+                "透過 Claude Code 的 hooks 與 tmux 整合，將所有 session 需要人工處理的事項集中在單一 TUI 佇列中",
+                "提供 Review、Step、Quiz 與 Vibe 四種運作模式，可依專案需求設定稽核嚴格度與問答機制",
+                "採用 Vim 快捷鍵導覽，支援 PR 式逐行審查註解、多 session 管理與 Git worktree 整合"
+              ],
+              "why": "它解決了開發者同時執行多個 Claude Code 階段時需頻繁切換視窗的注意力碎片化問題，大幅提升 AI 協作開發效率。",
+              "meta": {
+                "source": "HN Show",
+                "score": 8,
+                "comments": 0,
+                "readingTime": 9,
+                "hnUrl": "https://news.ycombinator.com/item?id=50452257",
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: Pots – Open-source Grok Bot alternative, used by 6 startups for a month",
+              "url": "https://github.com/Crokily/pi-durable-bot",
+              "tldr": "Pots 是一款開源的 Grok Bot 替代方案，可在本地機器獨立運作並具備自主行動能力的 AI 協同工作者。",
+              "points": [
+                "採用 MIT 開源授權，資料全留存於本地端，支援 40 多種 LLM 供應商與本地模型",
+                "具備自主決策與執行能力，能主動監聽 Slack、Discord 與 Telegram 等頻道並運作代碼",
+                "支援派發背景子 Agent 處理複雜任務，並可排程執行 Routine 定時檢查作業"
+              ],
+              "why": "為企業提供免受封閉式 AI 產品限制的開源替代方案，兼具高隱私性、模型自主選擇權與極高客製化彈性。",
+              "meta": {
+                "source": "HN Show",
+                "score": 6,
+                "comments": 1,
+                "readingTime": 10,
+                "hnUrl": "https://news.ycombinator.com/item?id=50452040",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "[AINews] Mercor $750m Series D at $20B valuation, $3B run rate",
+              "url": "https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/",
+              "tldr": "Mercor 以 200 億美元估值完成 7.5 億美元 D 輪融資，同時科技界迎來 Google Gemini 4 Carbon 與 Anthropic Fable 5.2 等新模型發表。",
+              "points": [
+                "Mercor 估值達 200 億美元，年化營收突破 30 億美元。",
+                "Google 推出 Gemini 4 Carbon，主打高難度代理工作與程式開發。",
+                "Anthropic 發表 Fable 5.2，在多模態知識與生命科學推理表現亮眼。"
+              ],
+              "why": "大型 AI 模型的快速迭代與巨額融資顯示出產業正高速發展，並對全球經濟與基礎設施產生深遠影響。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 8,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-11",
       "title": "🗞️ AI 每日摘要 · 2026-11-11",
