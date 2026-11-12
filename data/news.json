@@ -1,6 +1,207 @@
 {
-  "generatedAt": "2026-11-12T01:58:34",
+  "generatedAt": "2026-11-13T02:27:06",
   "days": [
+    {
+      "date": "2026-11-13",
+      "title": "🗞️ AI 每日摘要 · 2026-11-13",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Anthropic IPO",
+              "url": "https://ipo.anthropic.com/us/",
+              "tldr": "AI 公司 Anthropic 宣布啟動 IPO 流程，預計於 11 月 19 日在 Nasdaq 以股票代碼「ANT」正式上市交易。",
+              "points": [
+                "Anthropic 預計於 11 月 10 日展開路演，11 月 18 日確定最終發行價，並於 11 月 19 日在 Nasdaq 掛牌交易（代碼為「ANT」）。",
+                "Q3'26 財務數據顯示營收達 170 億美元（年增超過 12 倍），年消費 10 萬美元以上的客戶超過 11,900 家。",
+                "因可轉債與衍生負債等公允價值變動產生 219 億美元非現金費用，Q3'26 淨虧損達 233 億美元。"
+              ],
+              "why": "這標誌著頂尖 AI 公司 Anthropic 邁入公開資本市場，其上市進程與財務數據為市場觀察 AI 產業商業化發展的重要指標。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 640,
+                "comments": 649,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50465829",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Introducing Gemini 4 Hydrogen",
+              "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+              "tldr": "Google 正式推出全新 AI 模型 Gemini 4 Hydrogen，主打高效能與快速執行，專為日常程式編寫、代理工作流程及消費端應用設計。",
+              "points": [
+                "提供四種思維等級與 100 萬 token 上下文視窗，兼具高速執行與高成本效益。",
+                "可透過 Google Antigravity 的 Orchestrator 與 Carbon、Argon 自動切換協同運作，最佳化多模型工作流程。",
+                "全面整合至 Gemini API、Gemini app 與 Google Search，並在程式寫作、多模態分析及安全性上顯著提升。"
+              ],
+              "why": "它將高效能 AI 技術普及至廣大開發者與消費端，在維持高品質推理的同時降低成本與延遲，顯著提升日常工作效率。",
+              "meta": {
+                "source": "Google DeepMind",
+                "score": null,
+                "comments": null,
+                "readingTime": 7,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "SoftBank’s billion-dollar loss may have put a cap on AI’s natural gas ambitions",
+              "url": "https://techcrunch.com/2026/11/12/softbanks-billion-dollar-loss-may-have-put-a-cap-on-ais-natural-gas-ambitions/",
+              "tldr": "SoftBank 因過度預訂天然氣發電機組以因應 AI 電力需求，遭遇超過 30 億美元的設備減記損失，凸顯 AI 天然氣發電熱潮的風險與極限。",
+              "points": [
+                "SoftBank 子公司 SB Energy 曾支付不可退還訂金預訂超過 13GW 的發電機組，試圖搶佔 AI 資料中心的供電主導權。",
+                "SoftBank 最新季報顯示虧損 71 億美元，其中逾 30 億美元來自天然氣發電設備減記。",
+                "專家指出天然氣存在冬季供應風險，資料中心轉向「電網搭配大型電池」的更經濟方案，使天然氣需求成長不如 SoftBank 預期。"
+              ],
+              "why": "這反映了 AI 引發的暴增電力需求正面臨真實投資風險，顯示過度依賴天然氣發電可能已達到市場成長的上限。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "AI chatbots are recommending fake retail websites, study finds",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1032020/gemini-chatgpt-perplexity-shopping-test-risky-fake-websites-citations",
+              "tldr": "最新研究指出，消費者使用 ChatGPT、Gemini 與 Perplexity 等 AI 聊天機器人搜尋商品時，可能會被引導至假冒或具風險的零售網站。",
+              "points": [
+                "品牌保護公司 Podqi 測試顯示，AI 機器人在購物提問中最高有 15% 的回答包含風險或假冒網站連結。",
+                "三款 AI 中以 Perplexity 出錯率最高（15%），ChatGPT 為 8%，Gemini 表現最好（4%）。",
+                "小型品牌與查詢「區域官方網站」時更容易出現假網站，Perplexity 就曾將假網站誤標為 Stüssy 的官方網站。"
+              ],
+              "why": "隨著假期購物季臨近且更多人依賴 AI 購物，機器人推薦假網站恐導致消費者個人資訊與信用卡資料外洩。",
+              "meta": {
+                "source": "The Verge",
+                "score": null,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "Scaling Mathematical Proof Supervision from Structured Textbooks",
+              "url": "https://huggingface.co/papers/2610.40394",
+              "tldr": "研究團隊推出基於 2,118 本大學數學教科書建構的 TOME-Math 資料集，透過結構化證明監督提升語言模型 16.7 個百分點的數學推理能力。",
+              "points": [
+                "推出包含 2,118 本大學教科書、約 380K 筆結構化紀錄的 TOME-Math 資料集。",
+                "不同於傳統孤立的 QA 對，該資料集保留了章節順序、命題證明連結與引用相依性。",
+                "經 TOME-Math 微調的模型在數學推理基準上的平均表現比基底模型提升 16.7 個百分點。",
+                "證實了教科書結構與課程學習（Curriculum Learning）能有效擴展與提升 AI 的數學推理能力。"
+              ],
+              "why": "這項研究證明了保留教材結構與脈絡比單純的問答對更能有效提升語言模型的複雜數學推理能力。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 37,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Hugging Face CEO vows to keep fighting for open-source AI after Jensen Huang’s exit",
+              "url": "https://techcrunch.com/2026/11/12/hugging-face-ceo-vows-to-keep-fighting-for-open-source-ai-after-jensen-huangs-exit/",
+              "tldr": "在 Nvidia 執行長 Jensen Huang 離職後，Hugging Face 執行長 Clément Delangue 發文誓言將繼續全力為開源 AI 奮鬥。",
+              "points": [
+                "Hugging Face 執行長 Clément Delangue 對 Jensen Huang 離職表示遺憾，並強調團隊會比以往更努力推廣開源 AI。",
+                "Nvidia 於 9 月宣佈擬以 129 億美元收購 Hugging Face，該交易目前正面臨美國司法部的反壟斷審查。",
+                "Jensen Huang 長期積極倡導開源與開放權重模型，他的離職引發開源社群對 Nvidia 未來 AI 策略轉變的疑慮。"
+              ],
+              "why": "Jensen Huang 是開源 AI 生態系的核心推手，他的離職可能影響 Nvidia 與 Hugging Face 收購案後的開源 AI 發展走向。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: AI Red Lines – write down what would make you act on AI",
+              "url": "https://yourairedlines.com",
+              "tldr": "「AI Red Lines」是一個鼓勵大眾寫下對 AI 發展底線與應對行動的專案，藉由心理學證實的追蹤機制提高個人履行承諾的機率。",
+              "points": [
+                "啟發自 1944 年因良知退出 Manhattan Project 的物理學家 Joseph Rotblat，倡導明確制定個人的倫理底線。",
+                "引用 138 項心理學研究指出，透過書面記錄、公開分享、指定見證人與設定提醒，能顯著提升恪守目標的機率。",
+                "提供工具讓使用者記錄自身的 AI 紅線，對照新聞事件並預先規劃觸發底線時的行動（如離職或公開發聲）。"
+              ],
+              "why": "在 AI 快速發展的時代，該工具協助從業者與大眾建立具體的倫理底線與行動機制，避免在漸進的變化中妥協。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 21,
+                "comments": 14,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50467880",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "[AINews] D-Day (Decision Models Day)",
+              "url": "https://latent.space/p/ainews-d-day-decision-models-day/",
+              "tldr": "本期 AINews 報導 Google 推出高性價比的 Gemini Decision 1 決策模型，以及 Claude Fable 5.2 於評測登頂，並涵蓋機器人與硬體架構進展。",
+              "points": [
+                "Google 發布 Gemini Decision 1 多模態決策模型，單次推理分類成本僅 $0.10/1M token，延遲為 150–250 ms。",
+                "Claude Fable 5.2 在 Agent Arena 評測中排名第一，效能約為第二名 Opus 5.5 的 1.6 倍，同時調降 API 價格。",
+                "DeepMind 運用 AlphaProof 成功完成 libsignal 的形式驗證，Runway 則開源 Praxis-1 機器人世界動作模型。",
+                "推論系統與硬體進展包含 vLLM 在 Vera Rubin NVL72 上實現更高吞吐量與性價比，以及 TPU 8i Max 的推出。"
+              ],
+              "why": "專用決策模型的推出與 Agent 評測的演進，展現了 AI 系統正朝向超低成本、低延遲與實用化自動控制的方向加速發展。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 9,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-12",
       "title": "🗞️ AI 每日摘要 · 2026-11-12",
