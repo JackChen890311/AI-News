@@ -1,6 +1,204 @@
 {
-  "generatedAt": "2026-11-13T02:27:06",
+  "generatedAt": "2026-11-14T01:53:55",
   "days": [
+    {
+      "date": "2026-11-14",
+      "title": "🗞️ AI 每日摘要 · 2026-11-14",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Elevated errors on claude.ai, Claude Code, and platform.claude.com",
+              "url": "https://status.claude.com/incidents/nn11wk485zfn",
+              "tldr": "claude.ai、Claude Code 與 platform.claude.com 出現錯誤率升高問題，官方提供 Email 及 SMS 事件更新訂閱服務。",
+              "points": [
+                "claude.ai、Claude Code 及 platform.claude.com 目前出現錯誤率升高的異常狀況。",
+                "用戶可透過 Email 或 SMS 訂閱事件更新，以便在事件發布、更新或解決時收到通知。",
+                "若需接收 SMS 簡訊通知，用戶必須先完成電話號碼驗證。"
+              ],
+              "why": "讓使用相關服務的用戶與開發者能即時掌握系統故障與修復進度。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 437,
+                "comments": 355,
+                "readingTime": 1,
+                "hnUrl": "https://news.ycombinator.com/item?id=50481187",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Introducing ChatGPT Wallet",
+              "url": "https://openai.com/index/introducing-chatgpt-wallet",
+              "tldr": "Introducing ChatGPT Wallet, a secure way for agents in ChatGPT Work, Codex, and dots to complete purchases with user approval and existing card protections.",
+              "points": [],
+              "why": null,
+              "meta": {
+                "source": "OpenAI",
+                "score": null,
+                "comments": null,
+                "readingTime": null,
+                "hnUrl": null,
+                "summarized": false,
+                "summaryMode": "extractive"
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "XYBench: Helping with the problem behind the question",
+              "url": "https://huggingface.co/blog/allenai/xybench",
+              "tldr": "研究團隊推出包含 8,000 多個問題的評測基準 XYBench，用以評估 AI 助理能否識別使用者的錯誤假設並解決其核心問題。",
+              "points": [
+                "XYBench 由 Carnegie Mellon、NVIDIA 與 Johns Hopkins 等團隊開發，涵蓋 Stack Overflow 和 WikiHow 等 8,115 個真實問題。",
+                "評測 GPT-5、Claude Sonnet 4.6 和 Gemini 3.1 Pro 等模型發現，模型傾向照字面回答錯誤提問，導正使用者觀念的能力仍遜於人類。",
+                "研究指出 LLM 在選擇題中具備識別優質解答的能力（71–84%），但在自行生成回答時卻難以主動聚焦於核心目標（僅 35–41%）。"
+              ],
+              "why": "該研究揭示了當前 LLM 處理 XY problem 的能力缺口，能指引未來訓練出更具語用理解力且真正實用的 AI 助理。",
+              "meta": {
+                "source": "Hugging Face",
+                "score": null,
+                "comments": null,
+                "readingTime": 6,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "SO-Arena: Benchmarking the Capability Spectrum and Reliability of System One Models",
+              "url": "https://huggingface.co/papers/2611.15777",
+              "tldr": "本研究推出 SO-Arena 評測基準，評估 System One 模型在多領域的表現，發現高整體準確率並不代表具備可靠的決策能力。",
+              "points": [
+                "SO-Arena 涵蓋 11 個領域與 5 種能力家族，從能力光譜與決策可靠性雙重維度評估 System One 模型。",
+                "可靠性評估包含選項變更下的「決策穩定性」以及無有效選項時的「缺少答案辨識能力」。",
+                "對 21 個模型的測試顯示，擴展與推理效益因領域而異，且表現最佳的模型在可靠性排名僅第 7 位。"
+              ],
+              "why": "這項研究強調了單靠準確率無法反映 AI 的實際信任度，為評估快速決策模型的系統化能力與可靠性提供了重要依據。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 71,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
+              "url": "https://huggingface.co/papers/2611.14815",
+              "tldr": "BirdDreams 是一個自回歸駕駛世界模型，能僅從單張相機影像聯合生成透視與鳥瞰圖（BEV）影片，實現精確的本車軌跡控制與反應式交通模擬。",
+              "points": [
+                "結合雙 Video Diffusion Transformers 與 Joint Attention 機制，同步生成包含細節的透視影片與具備幾何結構的 BEV 影片。",
+                "推論時無需 HD map 或車輛狀態輸入，即可預測場景佈局並透過 BEV 作為幾何介面精確控制本車軌跡。",
+                "在 PhysicalAI-AV 與 nuScenes 測試中，於軌跡跟隨精準度與周遭車輛反應真實度上皆優於先前的駕駛世界模型。"
+              ],
+              "why": "該技術克服了傳統模型中車輛動態與外觀糾纏及遮蔽的難題，顯著提升了自動駕駛系統模擬真實交通反應與精確控制的能力。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 45,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: Langfuse AI Gateway, open source rust gateway to trace every LLM call",
+              "url": "https://github.com/langfuse/langfuse/tree/main/ai-gateway",
+              "tldr": "Langfuse 推出一款以 Rust 打造的開源 AI Gateway，能原生轉發 OpenAI 與 Anthropic API 請求，並透過 OTLP 自動追蹤記錄每一次的 LLM 調用。",
+              "points": [
+                "支援 /openai/v1 與 /anthropic/v1 端點，能在不重寫位元組的情況下轉發 native JSON 或 SSE 串流。",
+                "捕獲請求與回應數據後，會透過 OTLP 將生成資料批次上傳至 Langfuse 進行記錄。",
+                "採用 Rust 編寫，具備記憶體預算控制、連線傾卸逾時設定與白名單等安全防護機制。",
+                "為每個請求分配全新的 UUIDv7 request_id，以便跨日誌、Web 與 OpenTelemetry 追蹤數據。"
+              ],
+              "why": "這項開源工具讓開發者能以高效能且非破壞性的方式監控與追蹤所有 LLM 呼叫，大幅提升 AI 應用的可觀察性。",
+              "meta": {
+                "source": "HN Show",
+                "score": 8,
+                "comments": 0,
+                "readingTime": 8,
+                "hnUrl": "https://news.ycombinator.com/item?id=50484682",
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Jensen Huang’s exit puts Nvidia’s support for open source in question",
+              "url": "https://techcrunch.com/2026/11/12/jensen-huangs-exit-puts-nvidias-support-for-open-source-in-question/",
+              "tldr": "Nvidia 執行長 Jensen Huang 因涉入與中國間諜的桃色醜聞辭職，引發業界對 Nvidia 未來是否繼續支持開源 AI 生態系與相關收購案的疑慮。",
+              "points": [
+                "Jensen Huang 因坦承與涉嫌為中國間諜的 Megaspeed 高層 Alice Huang 有染而辭去 Nvidia 執行長，由 CFO Colette Kress 暫代。",
+                "此人事變動使 Nvidia 擬以 130 億美元收購 Hugging Face 等開源 AI 投資與合作計畫增添不確定性。",
+                "支持 open source 生態系是 Nvidia 的重要商業策略，有助於擴大客戶群並降低對 Google、OpenAI 等自研晶片大廠的依賴。",
+                "Jensen Huang 的離職削弱了對抗封閉模型陣營的關鍵力量，可能促使華盛頓對中國 AI 公司及 open-weight 模型採取更嚴格的限制。"
+              ],
+              "why": "Jensen Huang 的離職不僅撼動 Nvidia 的經營團隊，更可能改變全球 open source AI 生態系的發展資源與美國對 AI 技術的監管政策走向。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Why is Google cutting off Search from AI-free schools? Here are some theories",
+              "url": "https://text.npr.org/nx-s1-6029408",
+              "tldr": "Google 要求校園必須接受 AI Overviews 功能，否則將失去 Google Search 的存取權，引發家長、教育界與政界強烈不滿與質疑。",
+              "points": [
+                "Google 宣布學校若不想使用 AI 功功能，將無法使用整個 Google Search 服務，引發家長與政界批評。",
+                "前 Google 員工猜測，此舉是為了避免在反壟斷訴訟中被認定 Search 與 AI 是可分離的產品。",
+                "Common Sense Media 將 Google AI Overviews 評為「無法接受的風險」，且 Google 還面臨家長因聊天機器人 Gemini 涉及自殺事件而遭起訴。"
+              ],
+              "why": "這則新聞凸顯了科技巨頭強行將 AI 推進校園所引發的信任危機、反壟斷法律策略考量以及社會對青少年使用 AI 安全的擔憂。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 83,
+                "comments": 73,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50484960",
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-13",
       "title": "🗞️ AI 每日摘要 · 2026-11-13",
