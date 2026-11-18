@@ -1,6 +1,202 @@
 {
-  "generatedAt": "2026-11-18T03:19:23",
+  "generatedAt": "2026-11-19T02:54:59",
   "days": [
+    {
+      "date": "2026-11-19",
+      "title": "🗞️ AI 每日摘要 · 2026-11-19",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Why your fine-tuning job takes longer than the FLOPs say",
+              "url": "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time",
+              "tldr": "研究發現傳統的 FLOP 基準計算無法準確預測生成式語言模型的微調時間，而基於 CatBoost 的機器學習模型能大幅提高預測準確度。",
+              "points": [
+                "傳統只計算運算量的 FLOP 基準與實際訓練時間落差極大（R² 僅 0.31）。",
+                "訓練過程中的環境設置、定期評估、檢查點儲存與 I/O 損耗是造成時間誤差的主要原因。",
+                "僅根據派發前已知配置進行預測的 CatBoost 模型，其 R² 可達 0.98，平均絕對誤差僅 1.71 小時。"
+              ],
+              "why": "準確預估 GPU 叢集上的微調作業時間能減少資源閒置並優化排程，解決 AI 算力稀缺與昂貴的問題。",
+              "meta": {
+                "source": "Hugging Face",
+                "score": null,
+                "comments": null,
+                "readingTime": 9,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Google’s AI feature in Search gets its own incognito mode",
+              "url": "https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/",
+              "tldr": "Google 宣布在其 Search 的 AI Mode 中推出「temporary threads」功能，讓使用者能進行不留紀錄的暫時性對話。",
+              "points": [
+                "AI Mode 新增 temporary threads 功能，對話不會記錄在搜尋歷史或推薦中。",
+                "使用者只需點擊右上角圖示即可啟用，操作方式類似 Gemini 的暫時聊天。",
+                "此功能已在全球桌面與行動裝置上陸續推出，支援所有支援的語言。"
+              ],
+              "why": "此功能讓使用者在進行敏感或單次搜尋時能保護隱私，避免影響未來的個人化推薦與搜尋紀錄。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "AI agents ask better questions than KPMG accountants in audit trial",
+              "url": "https://europeanbusinessmagazine.com/ai-agents-better-questions-kpmg/",
+              "tldr": "KPMG UK 在實驗中發現，AI agents 在檢視財報時展現出比人類會計師更深度的調查與提問能力。",
+              "points": [
+                "KPMG UK 的 Project Exponential 專案讓超過 100 個 AI agents 參與實際的審計工作流程。",
+                "實驗顯示 AI agents 能深入調查問題並提出人類未發現的好問題，但仍需人類監督與介入。",
+                "這項技術可能徹底改變審計產業的商業模式與人力需求，對會計師專業帶來新挑戰。"
+              ],
+              "why": "這標誌著 AI 從行政輔助跨入專業審計核心，可能顛覆傳統會計事務所的營運模式。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 99,
+                "comments": 53,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50547777",
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "AscendGYM: A Cost-Aware Kernel Optimization Benchmark for Real-World Workloads on Ascend NPUs",
+              "url": "https://huggingface.co/papers/2611.17621",
+              "tldr": "AscendGYM 是一個針對 Ascend NPU 真實工作負載的具成本意識之 Kernel 最佳化評測標準。",
+              "points": [
+                "包含 48 個跨三種難度等級的 Kernel，其資料型態與張量形狀皆取自真實世界的訓練與推論任務。",
+                "支援模型評估與模型－Harness 評估兩種模式，並提供完整的執行環境。",
+                "提出 Speedup-Token Score (STS) 新指標，用於平衡效能加速與 Token 成本。"
+              ],
+              "why": "它填補了現有 Ascend Kernel 評測的空白，能有效評估 AI 模型與 Agent 在實際預算限制下的 Kernel 最佳化能力。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 91,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "TeleChat to Xing4: Advancing Frontier Agentic Models on Domestic Chips and Frameworks",
+              "url": "https://huggingface.co/papers/2611.22115",
+              "tldr": "研究團隊推出 Xing4 大型語言模型系列，結合 Ascend 晶片與 MindSpore 框架，實現國產晶片上的前沿 Agentic 模型訓練。",
+              "points": [
+                "Xing4 系列模型延續 TeleChat 脈絡，透過架構與訓練基礎設施的協同發展推進模型能力。",
+                "基於 MindSpore HyperParallel 基礎設施，成功在 8,192 張 Ascend 910C 卡上訓練 285B 參數模型。",
+                "引入 TeleGym 統一的 Agent 執行平台，優化後訓練階段的策略執行、評估與軌跡建構。"
+              ],
+              "why": "此研究展示了在大規模國產晶片與訓練框架上，成功訓練具備強大推理與 Agent 能力的前沿大模型之可行性。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 149,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Inside the Codex sandbox",
+              "url": "https://openai.com/index/inside-the-codex-sandbox",
+              "tldr": "See how Codex runs commands on your machine while enforcing the filesystem and network limits you control across macOS, Linux, and Windows.",
+              "points": [],
+              "why": null,
+              "meta": {
+                "source": "OpenAI",
+                "score": null,
+                "comments": null,
+                "readingTime": null,
+                "hnUrl": null,
+                "summarized": false,
+                "summaryMode": "extractive"
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: Can an AI Agent Bypass Your Website Security?",
+              "url": "https://assess.poh.org/",
+              "tldr": "有一項名為 Show HN 的 AI Agent Vulnerability Assessment 工具，能透過部署前沿 AI Agent 測試網站安全性，並評估 Proof of Human 的分數。",
+              "points": [
+                "在目標網站上啟動前沿 AI Agent 進行測試",
+                "展示 AI Agent 成功完成的各項動作",
+                "利用 Proof of Human 評估測試會話的表現"
+              ],
+              "why": "這項工具能幫助網站管理者檢視並提升自身系統對新型 AI Agent 的防禦能力。",
+              "meta": {
+                "source": "HN Show",
+                "score": 8,
+                "comments": 1,
+                "readingTime": 1,
+                "hnUrl": "https://news.ycombinator.com/item?id=50548480",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "[AINews] GPT-6.2 Astra, the #2 Frontier Model is better and 20%-600% cheaper, but has mixed reviews; 6.2 Sol likely main workhorse",
+              "url": "https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/",
+              "tldr": "OpenAI 推出了 GPT-6.2 Astra 與 Sol 模型，雖然效能強大且成本大幅降低，但早期測試者的評價褒貶不一。",
+              "points": [
+                "OpenAI 發布 GPT-6.2 Astra 與 Sol，主打更高的智慧與極佳的成本效益",
+                "新模型在多項基準測試中表現優異，但部分早期測試者給出強烈負評",
+                "微軟同步推出 MAI Code 2 等編碼模型，產業生態持續快速擴張"
+              ],
+              "why": "此為 OpenAI 最新一代前沿模型的重大發表，不僅影響 AI 市場格局，也引發業界對模型實用性與強化的熱烈討論。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 7,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-18",
       "title": "🗞️ AI 每日摘要 · 2026-11-18",
