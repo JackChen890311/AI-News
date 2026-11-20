@@ -1,6 +1,204 @@
 {
-  "generatedAt": "2026-11-20T03:04:30",
+  "generatedAt": "2026-11-21T02:45:42",
   "days": [
+    {
+      "date": "2026-11-21",
+      "title": "🗞️ AI 每日摘要 · 2026-11-21",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
+              "url": "https://alpo.ge/remark.pdf",
+              "tldr": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
+              "points": [],
+              "why": null,
+              "meta": {
+                "source": "Hacker News",
+                "score": 1659,
+                "comments": 1128,
+                "readingTime": 2,
+                "hnUrl": "https://news.ycombinator.com/item?id=50574968",
+                "summarized": false,
+                "summaryMode": ""
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Frostbite: A new CPU architecture discovered, designed and verified by AI",
+              "url": "https://architectlabs.com/blog/frostbite",
+              "tldr": "本篇文章介紹由 AI 從頭獨立探索、設計與驗證的新型通用 CPU 架構 Frostbite，其採用 interaction nets 技術大幅提升能源效率。",
+              "points": [
+                "Frostbite 採用 interaction nets 架構，消除傳統 CPU 為了維持快取一致性與指令重排所帶來的功耗開銷。",
+                "在 25 個評測工作負載中，Frostbite 相比現代超純量 CPU 核心實現了 4.59 倍的每瓦效能（perf/W）提升。",
+                "團隊透過形式化規格語言 ASL，讓 AI 系統實現跨編譯器、ISA、RTL 到 GDS 的全自動端到端軟硬體協同設計與驗證。"
+              ],
+              "why": "展現了 AI 具備自主探索並創造全新晶片架構的能力，為長期停滯的 CPU 核心效能帶來突破性的進展。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 499,
+                "comments": 276,
+                "readingTime": 8,
+                "hnUrl": "https://news.ycombinator.com/item?id=50572503",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "The fallout from Nvidia’s Jensen Huang scandal continues",
+              "url": "https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/",
+              "tldr": "Nvidia 在經歷撤換執行長 Jensen Huang 的風波後公布最新財報展現成長，TechCrunch 節目並對此與 AI 產業未來進行討論。",
+              "points": [
+                "Nvidia 雖然面臨撤換執行長 Jensen Huang 的後續影響，但最新財報仍展現健康成長。",
+                "TechCrunch 的 Equity 節目主持人們探討了 Nvidia 與整體 AI 產業的未來走向。",
+                "Anthropic 準備公開上市，將使 AI 產業的循環融資模式（circular funding model）面臨考驗。"
+              ],
+              "why": "該新聞反映了 Nvidia 在高層變動下的營運現況，以及 Anthropic 上市對整體 AI 產業融資生態的關鍵影響。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 4,
+              "title": "Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
+              "tldr": "Anthropic 數學家 Levent Alpöge 宣稱在 AI 模型 Claude 的協助下，成功證明了千禧年大獎難題 Riemann hypothesis。",
+              "points": [
+                "Levent Alpöge 運用程式語言 Lean 發表證明，強調 Claude 對推導至關重要，但解答目前尚未獲得獨立驗證或 Anthropic 官方確認。",
+                "根據 Clay Mathematics Institute 的規定，Millennium Prize 的解答須經過至少兩年的同儕審查與廣泛認可，才能獲得認證與獎金。",
+                "繼 OpenAI 宣稱破解 Navier-Stokes 問題後，此突破再次展現 AI 正加速改變數學領域的研究範式。"
+              ],
+              "why": "這顯示 AI 在解決世紀未解數學難題上展現突破性潛力，正急速重塑傳統數學研究與學術生態。",
+              "meta": {
+                "source": "The Verge",
+                "score": null,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation",
+              "url": "https://huggingface.co/papers/2611.26444",
+              "tldr": "研究團隊推出機器人操控診斷基準 Mind2Act World，揭示機器人在單獨進行認知推理或動作執行時表現良好，卻難以將兩者有效整合。",
+              "points": [
+                "Mind2Act World 包含 30 個模擬任務與 180 種組態，拆解評估 Mind（推理）、Act（執行）及 Mind2Act（兩者整合）。",
+                "實驗表明單一面向的能力無法順利轉移至組合任務，最強 Agent 在 Mind2Act 的成功率僅有 12.0%。",
+                "研究指出透過環境反饋將認知推理與物理執行進行閉環整合，是當前具身智能的核心瓶頸。"
+              ],
+              "why": "該基準釐清了具身 AI 系統在推理與執行整合上的重大缺口，為提升機器人於真實世界的可靠性與適應力提供關鍵診斷方向。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 46,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "Probing the \"Conscious\" Mind: Selective Access and Global Workspace in Vision-Language Models",
+              "url": "https://huggingface.co/papers/2611.26590",
+              "tldr": "研究團隊推出多模態透鏡 MC-Lens，結合全域工作空間理論（GWT）探討視覺語言模型（VLMs）內部的概念表徵、選擇性存取與跨模態對齊機制。",
+              "points": [
+                "提出 MC-Lens 工具，將 VLM 中間狀態映射至共享語義空間，用以比較跨模態的概念可存取性。",
+                "透過反事實實驗證明，模型存取的內部概念資訊會實質參與下游的計算與推理過程。",
+                "研究發現可靠的選擇性存取發展時間晚於概念可存取性，並提出新指標追蹤跨模態概念對齊。",
+                "跨不同系列與尺寸的 VLM 皆展現出共享的概念可存取性與查詢依賴選擇性模式。"
+              ],
+              "why": "該研究為在多模態人工系統中探索全域工作空間理論提供了實驗基礎，並能指導跨模態對齊技術的改進。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 33,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: BSWorld – AI agents can now test Bluetooth code without hardware",
+              "url": "https://github.com/XiaoMi/bsworld",
+              "tldr": "BSWorld 是一個 Linux 上的確定性模擬工具，讓開發者與 AI agent 無需實體硬體即可測試 Bluetooth 協議棧與應用程式。",
+              "points": [
+                "透過 BabbleSim 模擬無線電與 BSController，支援在無硬體條件下測試 BlueZ、Zephyr 等多種開源 Host 協議棧",
+                "支援設定訊號衰減、干擾注入與重放錄製訊號，並能在 pytest 中平行執行獨立測試場景",
+                "提供完整的測試可視性，可產出 HCI BTSnoop 擷取檔、控制器 radio 封包與 Ellisys 追蹤紀錄"
+              ],
+              "why": "它解決了 Bluetooth 軟體測試高度依賴實體硬體與環境干擾的痛點，顯著提升自動化測試與 AI agent 驗證程式碼的效率。",
+              "meta": {
+                "source": "HN Show",
+                "score": 5,
+                "comments": 1,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50570766",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "[AINews] Anthropic successfully completes largest IPO in history, valued at $1.5T",
+              "url": "https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/",
+              "tldr": "AI 獨角獸 Anthropic 成功掛牌上市，集資 813 億美元創下歷史最大規模 IPO，開盤市值一度衝上 2 兆美元。",
+              "points": [
+                "Anthropic 以股票代碼 $ANT 在 Nasdaq 掛牌，集資 813 億美元超越 SpaceX 成為史上最大 IPO。",
+                "執行長 Dario Amodei 強調安全優先，承諾若無法確保系統可控將放慢 AI 的訓練與部署。",
+                "AMD 在 IPO 期間同步投資 25 億美元，而 Google 則持有 Anthropic 約 13.7% 的股權。",
+                "財務數據顯示 Anthropic 的現金消耗率極低，至今僅消耗不到 100 億美元資金。"
+              ],
+              "why": "這標誌著生成式 AI 產業邁入公開市場的重要里程碑，其創紀錄的融資規模將深刻影響未來全球 AI 的競爭格局與安全規範。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 8,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-20",
       "title": "🗞️ AI 每日摘要 · 2026-11-20",
