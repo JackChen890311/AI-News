@@ -1,6 +1,208 @@
 {
-  "generatedAt": "2026-11-21T02:45:42",
+  "generatedAt": "2026-11-22T01:45:22",
   "days": [
+    {
+      "date": "2026-11-22",
+      "title": "🗞️ AI 每日摘要 · 2026-11-22",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Nasdaq erases all 2026 gains as AI sell-off dampens Anthropic’s second day",
+              "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+              "tldr": "Anthropic 上市第二天股價回落 9%，引發全球科技與 AI 概念股爆發賣壓，導致 Nasdaq 抹平 2026 年以來的所有漲幅。",
+              "points": [
+                "Anthropic 股價於上市次日重挫 9% 至 88.30 美元，吐回首日大部分漲幅。",
+                "Nvidia、SanDisk 與 TSMC 等晶片與科技巨頭遭重挫，Nasdaq 本週市值蒸發約 4 兆美元。",
+                "分析師認為 Anthropic 的 IPO 抽取了市場流動性，且投資人開始質疑 AI 鉅額資本支出的回報率與高估值。",
+                "拋售潮蔓延至全球市場，台股、日股、韓股與歐股均創下近年最大單週跌幅之一。"
+              ],
+              "why": "這標誌著市場對 AI 熱潮的態度出現轉折，投資人對高估值與鉅額 AI 支出的疑慮正引發全球科技股的深度修正。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 441,
+                "comments": 775,
+                "readingTime": 3,
+                "hnUrl": "https://news.ycombinator.com/item?id=50574383",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "Can Anthropic afford to put safety first?",
+              "url": "https://www.theverge.com/podcast/1038701/anthropic-ipo-ai-safety-openai-nvidia-structure",
+              "tldr": "Anthropic 作為首家上市的純 AI 實驗室於 Nasdaq 掛牌，其 IPO 引發關於如何在追求獲利與堅持 AI 安全使命之間取得平衡的討論。",
+              "points": [
+                "Anthropic 完成 IPO 首日股價大幅上漲，成為全球首家公開上市的純 AI 實驗室。",
+                "OpenAI 選擇讓 Anthropic 先上市，以觀察公開市場對 AI 公司的估值反應與商業模式接受度。",
+                "面對巨大的算力成本與營收增長壓力，上市後的 Anthropic 正面臨市場獲利要求與其原本 AI 安全承諾之間的巨大拉扯。"
+              ],
+              "why": "這標誌著 AI 產業邁入公開市場的新階段，其結果將成為未來 AI 企業估值的基準，並測試安全導向治理能否在資本壓力下存續。",
+              "meta": {
+                "source": "The Verge",
+                "score": null,
+                "comments": null,
+                "readingTime": 10,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "ClawDOS – An AI coding agent for DOS",
+              "url": "http://ricapar.net/ClawDOS/",
+              "tldr": "本文介紹 ClawDOS，這是一款能直接在 IBM PC XT 等復古 DOS 硬體上運行的 AI coding agent，透過代理伺服器連接 Claude API 執行編程與操作。",
+              "points": [
+                "完全由 Claude 編寫，可在僅有 4.77 MHz CPU 與 640KB RAM 的 8088 機器上運行",
+                "DOS 本地端程式 HARNESS.EXE 負責多數運作，僅將 8088 無法負擔的 TLS 加密交由外部 PC 橋接",
+                "提供 18 種工具，支援檔案編輯、Turbo C 編譯執行、CGA 截圖傳送及播放 PC speaker 音樂"
+              ],
+              "why": "展示了現代 AI agent 如何克服極端的硬體資源限制，成功將最新 LLM 技術應用於 1980 年代的復古電腦硬體。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 131,
+                "comments": 42,
+                "readingTime": 9,
+                "hnUrl": "https://news.ycombinator.com/item?id=50586292",
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Daniel Ek backs AI researcher’s fusion power startup. Here’s what they’re building.",
+              "url": "https://techcrunch.com/2026/11/20/daniel-ek-backs-ai-researchers-fusion-power-startup-heres-what-theyre-building/",
+              "tldr": "Spotify 創辦人 Daniel Ek 資助由前 AI 研究員 Nantas Nardelli 創立的核融合新創 Europa Fusion，著重以數據與模擬驅動脈衝功率技術。",
+              "points": [
+                "Spotify 創辦人 Daniel Ek 投資英國核融合新創 Europa Fusion，該公司由前 Google DeepMind 及 Pacific Fusion 研究員 Nantas Nardelli 創立。",
+                "Europa Fusion 採用脈衝功率（pulsed-power）技術，相較於偏重硬體測試的同業，該公司更著重於數據與模擬導向的研究方法。",
+                "創辦人 Nardelli 從 AI 領域轉向核融合，旨在解決氣候變遷問題並提供可持續的無碳能源。"
+              ],
+              "why": "核融合若能實現商業化，將提供近乎無限且無碳的電力，並有助於紓解 AI 技術快速發展所帶來的巨大能源消耗疑慮。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 2,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
+              "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+              "tldr": "資安研究員 HD Moore 在兩百萬個 AI 提示詞中植入追蹤金鑰，揭露 AI 中介服務與提供商存在嚴重的資料洩漏、駭客入侵及違反零資料留存（ZDR）隱私條款等安全危機。",
+              "points": [
+                "研究發現至少三家 AI 提供商遭駭客入侵並竊取提示詞，連標記為 Zero Data Retention（ZDR）的資料也未能倖免。",
+                "部分 AI 推理轉售商會側錄提示詞中的敏感憑證，並使用這些 AWS 金鑰進行未授權的資源檢索與存取。",
+                "某中國 AI 實驗室及其美商轉售夥伴違反隱私條款，主動抓取提示詞中的私密 URL 並試圖複製私有 git 儲存庫。",
+                "專家建議防範洩漏的最佳方式是自建伺服器，或直接採用第一梯次提供商的服務並自行指定上游模型。"
+              ],
+              "why": "這項研究揭露了廣泛使用的 AI 供應鏈與中轉架構中普遍存在的資安與隱私脆弱性，顯示使用者傳送敏感資料給 AI 服務時正面臨極大的外洩風險。",
+              "meta": {
+                "source": "Ars Technica",
+                "score": null,
+                "comments": null,
+                "readingTime": 6,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: OpenComputer – an open source alternative to Devin",
+              "url": "https://github.com/diggerhq/opencomputer",
+              "tldr": "OpenComputer 是一款開源且可自託管的 Devin 替代方案，能讓團隊透過 Slack 與 AI 代理協作並快速生成 PR。",
+              "points": [
+                "可在自己的雲端環境自託管全棧服務，並透過 rootless Podman 確保執行環境的安全隔離。",
+                "基準測試顯示其開啟 PR 的速度比 Devin 快 3.3 倍，到首次 push 速度也比熱門雲端代理快 2.6 倍。",
+                "整合 Slack 介面與 Calvin 閘道，支援彈性搭配 Claude Code、Codex 或 OpenCode 等模型。",
+                "採 Apache 2.0 授權開源，提供 3 天免費試用並支援攜帶自己的 ChatGPT 或 Codex 訂閱。"
+              ],
+              "why": "它為開發團隊提供了一個比 Devin 更高效、具數據隱私安全且可彈性自託管的開源 AI 自動化編程選擇。",
+              "meta": {
+                "source": "HN Show",
+                "score": 111,
+                "comments": 36,
+                "readingTime": 1,
+                "hnUrl": "https://news.ycombinator.com/item?id=50581403",
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: agent-mcts – Monte Carlo tree search on top of Claude Code",
+              "url": "https://github.com/natsu0529/agent-mcts",
+              "tldr": "agent-mcts 是一款開源工具，為 Claude Code 等程式碼 Agent 導入 Monte Carlo tree search 機制，使其具備解法分支探索與回溯能力。",
+              "points": [
+                "透過 git worktree 與 Session 分叉技術，讓單向執行的程式碼 Agent 可以在獨立環境進行分支探索與回溯",
+                "目前已在 Claude Code 上驗證完整流程，並配備 Codex CLI 適配器，預計於 v0.4 支援 Kimi CLI",
+                "提供終端機即時樹狀圖視覺化、測試與 LLM Judge 的評估函數，並支援 squash merge 將最佳結果套用至專案"
+              ],
+              "why": "它將學術研究中能顯著提升 AI 解決軟體問題能力的 MCTS 搜尋技術，轉化為現有 CLI 程式碼 Agent 即可直接使用的實用工具。",
+              "meta": {
+                "source": "HN Show",
+                "score": 6,
+                "comments": 0,
+                "readingTime": 6,
+                "hnUrl": "https://news.ycombinator.com/item?id=50589235",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Is selling an AI version of your face to this microdrama startup the future of Hollywood?",
+              "url": "https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/",
+              "tldr": "短劇新創公司 Shortical 推出 AI 臉部授權機制，讓演員授權肖像製作 AI 數位分身參演短劇，開創 Hollywood 影視製作與零工經濟的新模式。",
+              "points": [
+                "Shortical 攜手演員 Aki Avni 推出全 AI 短劇《Inevitable》，成為該平台首個授權真人肖像製作 AI 數位分身的案例。",
+                "公司藉由 AI 大幅降低製作成本並打造大型特效場面，並開放大眾在官網申請授權自己的臉部肖像以獲取報酬。",
+                "業界對此趨勢看法兩極，雖然 VC 資本熱捧 AI 技術，但傳統從業者擔心這會奪走年輕演員的演出機會並引發肖像權爭議。"
+              ],
+              "why": "這揭示了 AI 技術如何重塑影視娛樂產業的製作模式與演員就業生態，同時引發關於個人肖像權授權及零工化的深刻討論。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 5,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-21",
       "title": "🗞️ AI 每日摘要 · 2026-11-21",
