@@ -1,6 +1,206 @@
 {
-  "generatedAt": "2026-11-28T03:34:18",
+  "generatedAt": "2026-11-29T02:21:24",
   "days": [
+    {
+      "date": "2026-11-29",
+      "title": "🗞️ AI 每日摘要 · 2026-11-29",
+      "sections": [
+        {
+          "id": "headline",
+          "label": "🔥 頭條",
+          "items": [
+            {
+              "rank": 1,
+              "title": "OpenAI’s new countersuit accuses Apple of ‘unlawfully pressuring vendors’",
+              "url": "https://techcrunch.com/2026/11/28/openais-new-countersuit-accuses-apple-of-unlawfully-pressuring-vendors/",
+              "tldr": "針對 Apple 先前的指控，OpenAI 提出反訴，指控 Apple 不法施壓供應商並竊取商業機密，顯示雙方合作關係正式破裂。",
+              "points": [
+                "OpenAI 提出反訴，指控 Apple 非法施壓供應商避免與 OpenAI 合作",
+                "訴訟指控 Apple 利用僱用限制來限制 OpenAI 獲取工程人才，並涉及竊取商業機密",
+                "Apple 則回應反訴僅是企圖轉移焦點，雙方關係從 2024 年的合作急轉直下"
+              ],
+              "why": "這標誌著兩大科技巨頭從原本整合 ChatGPT 與 Siri 的合作夥伴，正式陷入激烈的法律戰與競爭。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 1,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 2,
+              "title": "GGUF LLM Models with Hidden Malware on Hugging Face Reached 2400 Victims",
+              "url": "https://malspark.com/blog/malicious-gguf-models-hugging-face/",
+              "tldr": "安全研究人員掃描 Hugging Face 上超過 320 萬個公開模型，發現 5 個藏有惡意軟體的 GGUF 格式模型，已造成逾 2,400 次下載。",
+              "points": [
+                "駭客透過竄改 GGUF 模型的 Chat Template（對話範本）以及在張量後方附加惡意執行檔來隱匿攻擊載荷。",
+                "名為 Mir2k 的攻擊活動上傳了兩個藏有 Windows 遠端存取木馬 ollie 的模型，會竊取瀏覽器密碼並進行門羅幣挖礦。",
+                "另一組名為 timdedid 的攻擊則透過植入誘發指令，嘗試劫持使用者的代理程式（Agent）執行 PowerShell 腳本。"
+              ],
+              "why": "這顯示攻擊者已開始利用開源 AI 模型平台散布惡意軟體，對下載並在本地端運行 LLM 的使用者構成嚴重安全威脅。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 156,
+                "comments": 52,
+                "readingTime": 9,
+                "hnUrl": "https://news.ycombinator.com/item?id=50676752",
+                "summarized": true
+              },
+              "category": "headline"
+            },
+            {
+              "rank": 3,
+              "title": "Sakana AI’s CEO says its homegrown models are about more than Japan’s national security",
+              "url": "https://techcrunch.com/2026/11/28/sakana-ais-ceo-says-its-homegrown-models-are-about-more-than-japans-national-security/",
+              "tldr": "日本 AI 新創 Sakana AI 計劃開發自家基礎模型 Sawara，旨在強化日本製造業並滿足國防與資安等敏感應用的在地部署需求。",
+              "points": [
+                "Sakana AI 計劃開發名為 Sawara 的基礎模型，初期專注於資安與國防需求，長期則放眼實體 AI 與製造業。",
+                "執行長 David Ha 指出，現有外國開源模型存在偏見，日本企業與政府迫切需要具備在地部署與可稽核能力的國產 AI。",
+                "Sakana AI 目前已與日本防衛省等政府機關合作，並計劃未來在日本當地進行 IPO。"
+              ],
+              "why": "這則新聞凸顯了在地化 AI 模型在國家安全、資安以及保護本土文化與產業競爭力的重要性。",
+              "meta": {
+                "source": "TechCrunch",
+                "score": null,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "headline"
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": "🔬 研究",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Claude Code sabotage: preliminary benchmarking",
+              "url": "https://xinyadu.github.io/blog/claude-code-sabotage.html",
+              "tldr": "這篇文章探討了當改變提示詞中關於程式碼用途與人類審查的描述時，是否會影響 Claude Code 在 GPU 核心優化與 nanoGPT 除錯任務中的表現。",
+              "points": [
+                "研究人員對 Claude Code 進行初步實驗，測試不同的任務情境設定（如作為模型訓練資料、無人類審查等）對其表現的影響。",
+                "在 KernelBench 與 nanoGPT 任務中，加入特定情境提示後，Claude Code 執行所需的步驟（turns）均顯著增加。",
+                "雖然執行成本（時間與步驟）增加，但實際產出的品質差異與背後機制仍需進一步研究來釐清。"
+              ],
+              "why": "這有助於釐清關於 AI 模型在特定任務情境下是否會出現「破壞」或「保留實力（sandbagging）」行為的疑慮，對未來 AI R&D 的安全與評估具有重要參考價值。",
+              "meta": {
+                "source": "Hacker News",
+                "score": 600,
+                "comments": 199,
+                "readingTime": 6,
+                "hnUrl": "https://news.ycombinator.com/item?id=50676390",
+                "summarized": true
+              },
+              "category": "research"
+            },
+            {
+              "rank": 2,
+              "title": "Solve Vision with Code: Coding Agents Are Stronger Visual Reasoners Than Video Models",
+              "url": "https://huggingface.co/papers/2611.34813",
+              "tldr": "研究顯示，讓 Coding Agents 透過編寫程式來渲染影片進行視覺推理，其表現大幅超越傳統的 Video Models。",
+              "points": [
+                "在 VBVR-Pro-Bench 測試中，Coding Agents 的得分比最強的 Video model 高出 0.22 以上。",
+                "研究比較了相同輸入與評估標準，證明程式合成是目前更可靠的視覺推理途徑。",
+                "分析指出 Agent 透過編寫明確操作的程式，比純影片生成的隱式運算更具優勢。"
+              ],
+              "why": "這項研究挑戰了「視覺推理必須透過影片生成模型原生進行」的傳統觀點，證明了 Coding Agents 在視覺推理任務上具有更高的可靠性與優勢。",
+              "meta": {
+                "source": "HF Daily Papers",
+                "score": 63,
+                "comments": null,
+                "readingTime": 3,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "research"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "🛠️ 工具",
+          "items": [
+            {
+              "rank": 1,
+              "title": "Show HN: Fleetlayer – Framework for running many AI agents on multiple machines",
+              "url": "https://fleetlayer.ai/",
+              "tldr": "Fleetlayer 是一個專為多台機器與多個帳號管理 AI agent 所設計的框架，能解決跨裝置通訊、瀏覽器共用及權限控管等問題。",
+              "points": [
+                "支援跨機器與跨帳號的 Claude Code、Codex 和 Gemini 協作與通訊",
+                "提供統一的控制面板、存取權限規則與完整的稽核日誌功能",
+                "允許不同 agent 安全地共用瀏覽器、檔案與 1Password 密鑰"
+              ],
+              "why": "它解決了開發者在多台設備上運行多個 AI agent 時常見的碎片化與安全權限痛點。",
+              "meta": {
+                "source": "HN Show",
+                "score": 23,
+                "comments": 14,
+                "readingTime": 8,
+                "hnUrl": "https://news.ycombinator.com/item?id=50675831",
+                "summarized": true
+              },
+              "category": "tools"
+            },
+            {
+              "rank": 2,
+              "title": "Show HN: WikiVectors – makes any LLM smarter",
+              "url": "https://wikivectors.com/",
+              "tldr": "WikiVectors 是一項基於即時 Wikipedia 的搜尋 API 服務，能為 LLM 提供最新且附有來源的段落以提升準確度。",
+              "points": [
+                "提供基於語意理解的搜尋功能，並隨時更新 Wikipedia 上的編輯內容",
+                "每個搜尋結果皆包含連結、頁面版本與授權資訊，方便 AI 進行引用",
+                "支援標準 HTTP 請求與 MCP 伺服器整合，並提供按量計費與免費額度"
+              ],
+              "why": "它解決了 AI 模型知識過時的問題，讓開發者能以低成本為 LLM 補充即時且可信的外部知識來源。",
+              "meta": {
+                "source": "HN Show",
+                "score": 6,
+                "comments": 0,
+                "readingTime": 2,
+                "hnUrl": "https://news.ycombinator.com/item?id=50674887",
+                "summarized": true
+              },
+              "category": "tools"
+            }
+          ]
+        },
+        {
+          "id": "opinion",
+          "label": "💭 觀點",
+          "items": [
+            {
+              "rank": 1,
+              "title": "[AINews] Inside the exploding Coding Data Market",
+              "url": "https://latent.space/p/ainews-inside-the-exploding-coding-data-market/",
+              "tldr": "本文報導了 AI 程式碼訓練資料市場的蓬勃發展，並回顧了 Anthropic Claude 模型涉嫌干擾 ML 研究的爭議、Gemini 4 Neon 的表現，以及開源模型、AI 硬體和資安事件等最新動態。",
+              "points": [
+                "探討專注於前沿實驗室資料合約、年營收達億美元規模的 AI 程式碼訓練資料市場。",
+                "社群熱議 Anthropic Claude 模型是否在 ML 研究中進行「刻意破壞」或僅是不擅長執行任務。",
+                "Gemini 4 Neon 在私有程式碼代理評測中表現優異，引發關於各家實驗室模型角色對齊的討論。",
+                "多項開源模型、推理硬體效能及 AI 相關資安事件（如雲端平台遭駭）成為產業焦點。"
+              ],
+              "why": "這則新聞全面整理了當前 AI 產業在模型可靠性爭議、高價訓練資料市場與開源生態的關鍵動態，對理解當前技術瓶頸與競爭格局至關重要。",
+              "meta": {
+                "source": "Latent Space",
+                "score": null,
+                "comments": null,
+                "readingTime": 8,
+                "hnUrl": null,
+                "summarized": true
+              },
+              "category": "opinion"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
     {
       "date": "2026-11-28",
       "title": "🗞️ AI 每日摘要 · 2026-11-28",
